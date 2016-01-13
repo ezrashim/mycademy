@@ -81,17 +81,6 @@ Users can create courses as Leaders:
 
     -If I am authenticated as a 'Leader' I can destroy any course on the list of my courses.
 
-      #pending
-      -create lessons
-      -upload videos
-      -upload pictures
-      -create assignments
-      -grade assignments
-      -view progress report
-      -create slack channel
-      -send announcements through slack
-      -send automatic reminders through slack
-
 Users can join courses as students:
 
   As an authenticated Learner
@@ -114,20 +103,19 @@ Users can join courses as students:
   I want to opt out from any course I joined
   so that I can discontinue the course.
 
-    -If I am authenticated as a 'Learner' I can view the content(title, body, duration, etc.) of the course.
+    -If I am authenticated as a 'Learner' I can leave the course.
 
 
-
-
-
-
-  As an authenticated Learner
-  I want to delete the list of courses I created
-  so that I can clear any obsolete course.
-
-    -If I am authenticated as a 'Leader' I can destroy any course on the list of my courses.
-
-  Users can sign in as students and view existing courses.
-  Users can sign in as students and join existing courses.
-  Users can sign in as students and leave joined courses.
-        -submit assignments
+          #pending
+          -create lessons
+          -upload videos
+          -upload pictures
+          -create assignments as leader
+          -grade assignments as leader
+          -view progress report
+          -create slack channel
+          -send announcements through slack
+          -send automatic reminders through slack
+          -mailer email invites
+          -search course function
+          -submit assignment as learner
