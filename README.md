@@ -1,3 +1,4 @@
+
 ![Build Status](https://codeship.com/projects/b2531260-9965-0133-f25f-2e043ba8a616/status?branch=master)
 ![Code Climate](https://codeclimate.com/github/ezrashim/mycademy.png)
 ![Coverage Status](https://coveralls.io/repos/ezrashim/mycademy/badge.png)
@@ -5,6 +6,24 @@
 
 [Mycademy ER Diagram Initial](https://drive.google.com/file/d/0B1xviAR28LmqNV8yckQyU2hxTlU/view?usp=sharing)
 [Mycademy ER Diagram Upgrade](https://drive.google.com/file/d/0B1xviAR28LmqWlJjd0VJUUxmb0k/view?usp=sharing)
+
+**Tools Used**
+Ruby on Rails
+Materialize
+devise
+HAML
+
+Will use:
+-Rspec
+-FactoryGirl
+-Javascript
+-mailer
+-Shoulda Matchers
+-Search Functionality
+-Pagination
+-Sass
+-Authentication Helper
+-jQuery
 
 **User Stories**
 
