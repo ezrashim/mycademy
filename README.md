@@ -64,14 +64,14 @@ Users can create membership accounts:
     -If I do not perform the above, I get an error message.
     -If I specify valid information, I sign in to my account and am authenticated.
 
-  As an unauthenticated user
+  As an authenticated user
   I want to sign out
   So that my identity is forgotten on the machine I am using.
 
     -If I am signed in, I have an option to sign out
     -When I am opted to sign out, I get a confirmation that my identity has been forgotten on the machine I am using.
 
-  As an unauthenticaed user
+  As an unauthenticated user
   I want to view all the courses
   So that I can decide if I want to sign up or not.
 
