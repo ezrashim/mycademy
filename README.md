@@ -1,11 +1,23 @@
+#README#
 
 ![Build Status](https://codeship.com/projects/b2531260-9965-0133-f25f-2e043ba8a616/status?branch=master)
 ![Code Climate](https://codeclimate.com/github/ezrashim/mycademy.png)
 ![Coverage Status](https://coveralls.io/repos/ezrashim/mycademy/badge.png)
 
 
-[Mycademy ER Diagram Initial](https://drive.google.com/file/d/0B1xviAR28LmqNV8yckQyU2hxTlU/view?usp=sharing)
-[Mycademy ER Diagram Upgrade](https://drive.google.com/file/d/0B1xviAR28LmqWlJjd0VJUUxmb0k/view?usp=sharing)
+##Mycademy: Learn to Lead##
+
+ Mycademy is a small scale online-learning platform that allows people to quickly create lessons and easily join courses.
+ As a Mycademy user, one can either choose to lead a course or join to learn in groups.
+ Two core values of this app are accessibility and accountability.
+
+ With an integrated editor(WYSIWYG-editor), leaders can easily create and share courses with any group.
+ With defined course dates and core assignments, learners can easily follow their lessons at any time.
+ With the use of Slack API, leaders and learners can easily communicate and ask any question.
+
+
+-[Mycademy ER Diagram Initial](https://drive.google.com/file/d/0B1xviAR28LmqNV8yckQyU2hxTlU/view?usp=sharing)
+-[Mycademy ER Diagram Upgrade](https://drive.google.com/file/d/0B1xviAR28LmqWlJjd0VJUUxmb0k/view?usp=sharing)
 
 **Tools Used**
 Ruby on Rails

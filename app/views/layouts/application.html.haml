@@ -7,5 +7,29 @@
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
+
   %body
+    %nav
+      .nav-wrapper
+        %a{ href: '#', class: 'brand-logo'} Mycademy
+        %ul{ id: 'nav-mobile', class: 'right hide-on-med-and-down'}
+          %li
+            - if user_signed_in?
+              %a{ href: destroy_user_session_path, method: :delete } Sign Out
+            - else
+              %a{ href: new_user_registration_path} Sign Up
+              %a{ href: new_user_session_path} Sign In
+
+
+    #flash
+      - flash.each do |key, value|
+        #flash-message.alert-box
+          - if value.class ==Array
+            - value.each do |val|
+              = val
+              %%br
+          - else
+            = value
+
+
     = yield
