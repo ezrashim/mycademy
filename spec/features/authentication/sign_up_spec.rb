@@ -5,12 +5,12 @@ feature 'sign up', %{
   I want to create an account
   So that I can create or join courses.
   } do
-    # ACCEPTANCE CRITERIA
-    # * I must specify a valid email address.
-    # * I must specify a password, and confirm that password.
-    # * If I do not perform the above, I get an error message.
-    # * If I specify valid information,
-    # * I register my account and am authenticated.
+  # ACCEPTANCE CRITERIA
+  # * I must specify a valid email address.
+  # * I must specify a password, and confirm that password.
+  # * If I do not perform the above, I get an error message.
+  # * If I specify valid information,
+  # * I register my account and am authenticated.
 
   scenario 'specifying valid and required information' do
     visit root_path
