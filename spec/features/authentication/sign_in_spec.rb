@@ -30,7 +30,7 @@ feature 'sign in', %{
     click_button 'Log in'
 
     expect(page).to have_content("Invalid email or password.")
-    expect(page).to have_content("Sign Up")
+    expect(page).to have_content("Sign up")
   end
 
   scenario 'an existing email with the wrong password is denied access' do
@@ -41,7 +41,7 @@ feature 'sign in', %{
     click_button 'Log in'
 
     expect(page).to have_content("Invalid email or password.")
-    expect(page).to have_content("Sign Up")
+    expect(page).to have_content("Sign up")
   end
 
   scenario 'an already authenticated user cannot re-sign in' do
