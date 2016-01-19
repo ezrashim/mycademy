@@ -3,7 +3,7 @@
 - if !user_signed_in?
   .row
     = link_to "Join Mycademy", new_user_registration_path
--else
+- else
   .row
     %li= link_to "Lead", '#'
     %li= link_to "Learn", '#'
@@ -11,5 +11,5 @@
 %ul
   - @courses.each do |course|
     %li
-      =course.title
-      =course.description
+      = course.title
+      = course.description

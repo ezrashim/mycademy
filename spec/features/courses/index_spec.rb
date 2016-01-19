@@ -19,6 +19,6 @@ feature 'view all courses', %{
       expect(page).to have_content(course.description)
     end
 
-      expect(page).to have_link('Join Mycademy')
+    expect(page).to have_link('Join Mycademy')
   end
 end
