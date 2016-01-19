@@ -14,7 +14,7 @@ feature 'sign up', %{
 
   scenario 'specifying valid and required information' do
     visit root_path
-    click_link 'Sign Up'
+    click_link 'Join Mycademy'
     fill_in('First Name', with: 'John')
     fill_in('Last Name', with: 'Doe')
     fill_in('Email', with: 'johndoe@123.com')
@@ -28,7 +28,7 @@ feature 'sign up', %{
 
   scenario 'required information is not supplied' do
     visit root_path
-    click_link 'Sign Up'
+    click_link 'Join Mycademy'
     click_button 'Sign Up'
 
     expect(page).to have_content("can't be blank")
@@ -37,7 +37,7 @@ feature 'sign up', %{
 
   scenario 'password confirmation does not match confirmation' do
     visit root_path
-    click_link 'Sign Up'
+    click_link 'Join Mycademy'
 
     fill_in 'Password', with: '123Seekrit'
     fill_in 'Password confirmation', with: '756Seekrit'
