@@ -13,6 +13,11 @@ class ApplicationController < ActionController::Base
       :last_name,
       :role
     ]
+
+    devise_parameter_sanitizer.for(:account_update) << [
+      :first_name,
+      :last_name
+    ]
   end
 
   def authorize_user
