@@ -4,20 +4,23 @@
     %meta{ :content => "text/html; charset=UTF-8",
     "http-equiv" => "Content-Type" }/
     %title Mycademy
+    %link{:href => "https://fonts.googleapis.com/css?family=Gudea", :rel => "stylesheet", :type => "text/css"}/
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
 
   %body
-    %nav
-      .nav-wrapper
-        %a.brand-logo{ href: '#' } Mycademy
-        %ul.right.hide-on-med-and-down{ id: 'nav-mobile' }
-          - if user_signed_in?
-            %li= link_to "#{current_user.email}", user_path(current_user)
-            %li= link_to 'Sign Out', destroy_user_session_path, method: :delete
-          - else
-            %li= link_to 'Sign In', new_user_session_path
+    .container
+      .row
+        .col.s12
+          .brand-logo
+            = link_to "Mycademy", root_path
+          %ul.right.hide-on-med-and-down{ id: 'nav-mobile' }
+            - if user_signed_in?
+              %li= link_to "#{current_user.email}", user_path(current_user)
+              %li= link_to 'Sign Out', destroy_user_session_path, method: :delete
+            - else
+              %li= link_to 'Sign In', new_user_session_path
     #flash
       - flash.each do |key, value|
         .alert-box#flash-message
