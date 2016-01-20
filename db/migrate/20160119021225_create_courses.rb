@@ -4,7 +4,6 @@ class CreateCourses < ActiveRecord::Migration
       t.string :title, null: false
       t.string :description
       t.string :icon
-      t.string :role, null: false, default: 'learner'
 
       t.timestamps null: false
     end

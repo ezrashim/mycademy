@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root 'courses#index'
 
   resources :users, only: [:show]
+  resources :courses, only: [:index, :show, :new, :create ]
 end
