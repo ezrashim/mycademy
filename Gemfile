@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'haml-rails', '~> 0.9'
+gem 'materialize-sass'
 
 group :development do
   gem 'web-console', '~> 2.0'

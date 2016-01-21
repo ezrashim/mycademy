@@ -15,7 +15,7 @@ feature 'update user information', %{
     user = create(:user)
     sign_in_as(user)
 
-    click_link "#{user.email}"
+    click_link "#{user.first_name}"
     click_link 'Update'
 
     fill_in('First Name', with: 'Barbara')
@@ -25,6 +25,6 @@ feature 'update user information', %{
 
     expect(page).to have_content('Your account has been updated successfully.')
     expect(page).to_not have_content(user.email)
-    expect(page).to have_content("barbaralee3@yahoo.com")
+    expect(page).to have_content("Barbara")
   end
 end

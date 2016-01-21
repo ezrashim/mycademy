@@ -15,7 +15,7 @@ feature 'sign out', %{
     sign_in_as(user)
 
     expect(page).to have_content("Signed in successfully.")
-    click_link "Sign Out"
+    first(:link, 'Sign Out').click
     expect(page).to have_content("Signed out successfully.")
   end
 
