@@ -14,6 +14,7 @@ gem 'haml-rails', '~> 0.9'
 gem 'materialize-sass'
 gem 'rails_12factor', group: :production
 gem 'puma'
+gem 'carrierwave'
 
 group :development do
   gem 'web-console', '~> 2.0'
