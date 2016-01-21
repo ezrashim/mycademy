@@ -1,0 +1,9 @@
+#flash
+  - flash.each do |key, value|
+    .alert-box#flash-message
+      - if value.class ==Array
+        - value.each do |val|
+          = val
+          %%br
+      - else
+        = value

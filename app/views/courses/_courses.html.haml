@@ -1,5 +1,6 @@
-%ul
-  - @courses.each do |course|
-    %li
-      = link_to course.title, course_path(course)
-      = course.description
+- @courses.each do |course|
+  .col.s12.m4
+    %div
+      -# = image_tag()
+    %h5.center= link_to course.title, course_path(course)
+    %p.light= course.description
