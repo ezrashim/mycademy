@@ -1,15 +1,8 @@
-%h2 Courses Offered
-
-- if !user_signed_in?
-  .row
-    = link_to "Join Mycademy", new_user_registration_path
-- else
-  .row
-    %li= link_to "Lead", new_course_path
-    %li= link_to "Learn", '#'
-
-%ul
-  - @courses.each do |course|
-    %li
-      = link_to course.title, course_path(course)
-      = course.description
+.container
+  .row.center
+    .col.s12
+    - if !user_signed_in?
+      = render 'join'
+    - else
+      = render 'lead'
+    = render 'courses'
