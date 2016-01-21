@@ -12,6 +12,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'haml-rails', '~> 0.9'
 gem 'materialize-sass'
+gem 'rails_12factor', group: :production
+gem 'puma'
 
 group :development do
   gem 'web-console', '~> 2.0'
