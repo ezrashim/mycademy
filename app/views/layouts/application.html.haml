@@ -1,26 +1,54 @@
 !!!
 %html
   %head
-    %meta{ :content => "text/html; charset=UTF-8",
-    "http-equiv" => "Content-Type" }/
-    %title Mycademy
-    %link{:href => "https://fonts.googleapis.com/css?family=Gudea", :rel => "stylesheet", :type => "text/css"}/
+    %title Mycademy: Learn to Lead
+    %link{:href => "http://fonts.googleapis.com/icon?family=Material+Icons", :rel => "stylesheet"}
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
 
   %body
-    .container
-      .row
-        .col.s12
-          .brand-logo
-            = link_to "Mycademy", root_path
-          %ul.right.hide-on-med-and-down{ id: 'nav-mobile' }
-            - if user_signed_in?
-              %li= link_to "#{current_user.email}", user_path(current_user)
-              %li= link_to 'Sign Out', destroy_user_session_path, method: :delete
-            - else
-              %li= link_to 'Sign In', new_user_session_path
+    %nav
+      .nav-wrapper
+        %a.brand-logo{:href => root_path} Mycademy
+        %a.button-collapse{"data-activates" => "mobile-demo", :href => "#"}
+          %i.material-icons menu
+        %ul.right.hide-on-med-and-down
+          - if user_signed_in?
+            %li
+              %a{ href: user_path(current_user) }
+                %i.material-icons.left perm_identity
+                = current_user.first_name
+            %li= link_to 'Sign Out', destroy_user_session_path, method: :delete
+          - else
+            %li= link_to 'Sign In', new_user_session_path
+        %ul#mobile-demo.side-nav
+          - if user_signed_in?
+            %li= link_to "#{current_user.first_name}", user_path(current_user)
+            %li= link_to 'Sign Out', destroy_user_session_path, method: :delete
+          - else
+            %li= link_to 'Sign In', new_user_session_path
+
+    -# .fixed-action-btn.vertical{:style => "bottom: 45px; right: 24px;"}
+    -#   %a.btn-floating.btn-large.red
+    -#     %i.large.material-icons mode_edit
+    -#   %ul
+    -#     %li
+    -#       %a.btn-floating.red
+    -#         %i.material-icons insert_chart
+    -#     %li
+    -#       %a.btn-floating.yellow.darken-1
+    -#         %i.material-icons format_quote
+    -#     %li
+    -#       %a.btn-floating.green
+    -#         %i.material-icons publish
+    -#     %li
+    -#       %a.btn-floating.blue
+    -#         %i.material-icons attach_file
+
+
     #flash
       - flash.each do |key, value|
         .alert-box#flash-message
@@ -31,3 +59,4 @@
           - else
             = value
     = yield
+    %script{:src => "https://code.jquery.com/jquery-2.1.1.min.js", :type => "text/javascript"}
