@@ -15,6 +15,8 @@ gem 'materialize-sass'
 gem 'rails_12factor', group: :production
 gem 'puma'
 gem 'carrierwave'
+gem 'wysiwyg-rails'
+gem 'font-awesome-rails'
 
 group :development do
   gem 'web-console', '~> 2.0'
