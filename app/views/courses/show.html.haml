@@ -3,7 +3,7 @@
 
 - if user_signed_in? && @enrollments.first.nil?
   %div= link_to 'Join Course'
--elsif current_user.nil?
+- elsif current_user.nil?
   %div= link_to 'Join Mycademy'
 - elsif @enrollments.first.leader?
   %div= link_to 'Delete Course', course_path(@course), method: :delete

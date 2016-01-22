@@ -5,6 +5,6 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
 
-  resources :courses, only: [:index, :show, :new, :create, :destroy ]
+  resources :courses, only: [:index, :show, :new, :create, :destroy]
 
 end
