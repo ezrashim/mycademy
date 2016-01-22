@@ -35,6 +35,22 @@ feature 'update a course', %{
     expect(page).to have_content(course.description.to_s)
   end
 
+  scenario 'leader cannot update the course if one of the field is blank' do
+    sign_in_as(leader)
+    click_link(course.title)
+    click_link('Update Course')
+
+    expect(page).to have_field('Title', with: course.title.to_s )
+    expect(page).to have_field('Description', with: course.description.to_s )
+
+    fill_in('Description', with: "")
+    click_button('Update Course')
+
+    expect(page).to have_content("Sorry buddy, we couldn't change your course. Your input is invalid.")
+    expect(page).to have_field("Title")
+    expect(page).to have_field("Description")
+  end
+
   scenario 'learner cannot update the course' do
     sign_in_as(learner)
     click_link(course.title)
