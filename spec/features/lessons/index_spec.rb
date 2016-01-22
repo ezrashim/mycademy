@@ -63,7 +63,6 @@ feature 'create a lesson', %{
   end
 
   scenario 'user can click links and flash shows on the page' do
-    lesson = course.lessons.first
     sign_in_as(user)
     click_link(course.title)
 
