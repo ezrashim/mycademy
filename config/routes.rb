@@ -5,6 +5,10 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
 
-  resources :courses
+  resources :courses do
+    resources :lessons, only: [:index]
+  end
+
+  resources :lessons, only: [:show]
 
 end

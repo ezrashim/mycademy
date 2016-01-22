@@ -24,8 +24,12 @@ class CoursesController < ApplicationController
 
   def show
     course
-    if current_user.nil? || enrollments.nil?
-      enrollments = []
+    @lessons = Lesson.where(course_id: course)
+    @enrollment = Enrollment.find_by(user: current_user, course: course)
+
+    if user_signed_in? && @enrollment.nil?
+      flash.now[:notice] = "Yo, sorry. You gotta join the team first."
+      render 'show'
     end
   end
 
@@ -56,8 +60,8 @@ class CoursesController < ApplicationController
 
   private
 
-  def enrollments
-    @enrollments ||= Enrollment.where(user_id: current_user.id, course_id: course.id)
+  def enrollment
+    @enrollment ||= Enrollment.find_by(user: current_user, course: course)
   end
 
   def course

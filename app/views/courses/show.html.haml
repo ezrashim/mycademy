@@ -1,12 +1,24 @@
 %h1= @course.title
 %h3= @course.description
 
-- if !current_user.nil? && @enrollments.first.nil?
+- if user_signed_in? && @enrollment.nil?
   %div= link_to 'Join Course'
 - elsif current_user.nil?
   %div= link_to 'Join Mycademy'
-- elsif @enrollments.first.leader?
+- elsif @enrollment.leader?
   %div= link_to 'Delete Course', course_path(@course), method: :delete
   %div= link_to 'Update Course', edit_course_path(@course)
 - else
   %div= link_to 'View My Progress'
+
+- @lessons.each do |lesson|
+  %ul
+  - if !user_signed_in?
+    %li= link_to lesson.title, new_user_registration_path
+  - elsif user_signed_in? && @enrollment.nil?
+    %li= link_to lesson.title, course_path(@course)
+  - elsif user_signed_in? && @enrollment.learner?
+    %li= link_to lesson.title, lesson_path(lesson)
+  - else
+    %li= link_to lesson.title, lesson_path(lesson)
+    %li= link_to 'Create Lessons', '#'
