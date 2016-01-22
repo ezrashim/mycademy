@@ -10,6 +10,10 @@ describe Enrollment do
   it { should have_valid(:course).when(Course.new) }
   it { should_not have_valid(:course).when(nil) }
 
+  it { should have_valid(:role).when("leader") }
+  it { should have_valid(:role).when("learner") }
+  it { should_not have_valid(:role).when("", nil) }
+
   describe "#leader?" do
     it "is not a leader if the role is not leader" do
       enrollment = create(:enrollment)

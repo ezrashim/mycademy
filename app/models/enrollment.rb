@@ -4,6 +4,7 @@ class Enrollment < ActiveRecord::Base
 
   validates :user, presence: true, uniqueness: { scope: :course }
   validates :course, presence: true, uniqueness: { scope: :user }
+  validates :role, presence: true
 
   def learner?
     role == "learner"
