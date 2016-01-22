@@ -1,7 +1,7 @@
 %h1= @course.title
 %h3= @course.description
 
-- if user_signed_in? && @enrollments.first.nil?
+- if !current_user.nil? && @enrollments.first.nil?
   %div= link_to 'Join Course'
 - elsif current_user.nil?
   %div= link_to 'Join Mycademy'

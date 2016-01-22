@@ -18,13 +18,21 @@ feature 'update a course', %{
   let!(:leader_enrollment) { create :enrollment, role: 'leader', user: leader, course: course }
   let!(:learner_enrollment) { create :enrollment, role: 'learner', user: learner, course: course }
 
-  scenario 'leader can update the course' do
+  scenario 'leader can update the course and course gets updated' do
     sign_in_as(leader)
     click_link(course.title)
     click_link('Update Course')
 
     expect(page).to have_field('Title', with: course.title.to_s )
     expect(page).to have_field('Description', with: course.description.to_s )
+
+    fill_in('Title', with: "Math")
+    click_button('Update Course')
+
+    expect(page).to have_content("Congratz! You just improved your course!")
+    expect(page).to have_content("Math")
+    expect(page).to_not have_content(course.title.to_s)
+    expect(page).to have_content(course.description.to_s)
   end
 
   scenario 'learner cannot update the course' do
