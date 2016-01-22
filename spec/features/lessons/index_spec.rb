@@ -62,7 +62,7 @@ feature 'create a lesson', %{
     expect(page).to have_content(lesson.title)
   end
 
-  scenario 'user can click links and shows flash page' do
+  scenario 'user can click links and flash shows on the page' do
     lesson = course.lessons.first
     sign_in_as(user)
     click_link(course.title)
@@ -71,11 +71,20 @@ feature 'create a lesson', %{
     expect(page).to have_content 'Join Course'
   end
 
-  # scenario 'leader can view links to lessons' do
-  #   lesson = course.lessons.first
-  #   sign_in_as(leader)
-  #   click_link(course.title)
-  #
-  #   expect(page).to have_content(lesson.title)
-  # end
+  scenario 'leader can view links to lessons' do
+    lesson = course.lessons.first
+    sign_in_as(leader)
+    click_link(course.title)
+
+    expect(page).to have_content(lesson.title)
+  end
+
+  scenario 'leader can click links and can view create and update links to each lesson.' do
+    lesson = course.lessons.first
+    sign_in_as(leader)
+    click_link(course.title)
+
+    expect(page).to have_link lesson.title
+    expect(page).to have_link 'Create Lessons'
+  end
 end

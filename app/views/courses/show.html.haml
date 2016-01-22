@@ -19,3 +19,6 @@
     %li= link_to lesson.title, course_path(@course)
   - elsif user_signed_in? && @enrollment.learner?
     %li= link_to lesson.title, lesson_path(lesson)
+  - else
+    %li= link_to lesson.title, lesson_path(lesson)
+    %li= link_to 'Create Lessons', '#'
