@@ -19,11 +19,23 @@ class CoursesController < ApplicationController
       flash[:notice] = @course.errors.full_messages
       render 'new'
     end
-
   end
 
   def show
     @course = Course.find(params[:id])
+    @enrollments = Enrollment.where(user_id: current_user.id, course_id: @course.id) unless current_user.nil?
+  end
+
+  def destroy
+    @course = Course.find(params[:id])
+
+    if @course.destroy
+      flash[:notice] = "Hey buddy, you just deleted your own course!"
+      redirect_to root_path
+    else
+      flash[:notice] = "Sorry, #{current_user.first_name}. We couldn't delete #{course.title}."
+      render :show
+    end
   end
 
   def course_params
