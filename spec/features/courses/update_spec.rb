@@ -13,7 +13,7 @@ feature 'update a course', %{
 
   let!(:leader) { create :user }
   let!(:learner) { create :user }
-  let!(:visitor) { create :user}
+  let!(:visitor) { create :user }
   let!(:course) { create :course }
   let!(:leader_enrollment) { create :enrollment, role: 'leader', user: leader, course: course }
   let!(:learner_enrollment) { create :enrollment, role: 'learner', user: learner, course: course }
@@ -23,8 +23,8 @@ feature 'update a course', %{
     click_link(course.title)
     click_link('Update Course')
 
-    expect(page).to have_field('Title', with: "#{course.title}")
-    expect(page).to have_field('Description', with: "#{course.description}")
+    expect(page).to have_field('Title', with: course.title.to_s )
+    expect(page).to have_field('Description', with: course.description.to_s )
   end
 
   scenario 'learner cannot update the course' do

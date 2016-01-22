@@ -31,7 +31,6 @@ class CoursesController < ApplicationController
   end
 
   def update
-
   end
 
   def destroy
