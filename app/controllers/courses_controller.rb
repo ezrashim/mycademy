@@ -26,6 +26,14 @@ class CoursesController < ApplicationController
     @enrollments = Enrollment.where(user_id: current_user.id, course_id: @course.id) unless current_user.nil?
   end
 
+  def edit
+    @course = Course.find(params[:id])
+  end
+
+  def update
+
+  end
+
   def destroy
     @course = Course.find(params[:id])
 

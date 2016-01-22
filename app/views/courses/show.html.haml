@@ -7,5 +7,6 @@
   %div= link_to 'Join Mycademy'
 - elsif @enrollments.first.leader?
   %div= link_to 'Delete Course', course_path(@course), method: :delete
+  %div= link_to 'Update Course', edit_course_path(@course)
 - else
   %div= link_to 'View My Progress'
