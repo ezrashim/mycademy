@@ -3,4 +3,5 @@ class Course < ActiveRecord::Base
   has_many :users, through: :enrollments
 
   validates :title, presence: true
+  validates :description, presence: true
 end
