@@ -14,12 +14,9 @@ feature 'authenticated users can view course details', %{
     let!(:user) { create(:user) }
     let!(:course) { create(:course) }
   scenario 'authenticated users can join courses on show page' do
-    # user = create(:user)
-    # course = create(:course_with_lessons, 3)
     sign_in_as(user)
 
     click_link(course.title)
-
     expect(page).to have_content(course.title)
     expect(page).to have_content(course.description)
     expect(page).to have_content('Join Course')

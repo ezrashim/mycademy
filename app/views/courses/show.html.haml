@@ -1,7 +1,11 @@
 %h1= @course.title
 %h3= @course.description
 
-- if user_signed_in?
+- if user_signed_in? && @enrollments.first.nil?
   %div= link_to 'Join Course'
-- else
+-elsif current_user.nil?
   %div= link_to 'Join Mycademy'
+- elsif @enrollments.first.leader?
+  %div= link_to 'Delete Course', course_path(@course), method: :delete
+- else
+  %div= link_to 'View My Progress'
