@@ -24,9 +24,7 @@ class CoursesController < ApplicationController
 
   def show
     course
-    unless current_user.nil?
-      enrollments
-    else
+    if current_user.nil? || enrollments.nil?
       enrollments = []
     end
   end
@@ -59,7 +57,7 @@ class CoursesController < ApplicationController
   private
 
   def enrollments
-      @enrollments ||= Enrollment.where(user_id: current_user.id, course_id: course.id)
+    @enrollments ||= Enrollment.where(user_id: current_user.id, course_id: course.id)
   end
 
   def course

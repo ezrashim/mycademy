@@ -23,8 +23,8 @@ feature 'update a course', %{
     click_link(course.title)
     click_link('Update Course')
 
-    expect(page).to have_field('Title', with: course.title.to_s )
-    expect(page).to have_field('Description', with: course.description.to_s )
+    expect(page).to have_field('Title', with: course.title.to_s)
+    expect(page).to have_field('Description', with: course.description.to_s)
 
     fill_in('Title', with: "Math")
     click_button('Update Course')
@@ -40,8 +40,8 @@ feature 'update a course', %{
     click_link(course.title)
     click_link('Update Course')
 
-    expect(page).to have_field('Title', with: course.title.to_s )
-    expect(page).to have_field('Description', with: course.description.to_s )
+    expect(page).to have_field('Title', with: course.title.to_s)
+    expect(page).to have_field('Description', with: course.description.to_s)
 
     fill_in('Description', with: "")
     click_button('Update Course')
