@@ -28,9 +28,9 @@ class LessonsController < ApplicationController
 
   def lesson_params
     params.require(:lesson).permit(
-    :title,
-    :content,
-    :order_no
+      :title,
+      :content,
+      :order_no
     ).merge(course: Course.find(params[:course_id]))
   end
 end
