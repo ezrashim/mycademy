@@ -1,11 +1,11 @@
 = form_for [@course, @lesson] do |f|
   .div
-    = f.label :title, "Title"
+    = f.label :title
     = f.text_field :title
 
-  .div#froala-editor
+  .div
     = f.label :content
-    = f.text_area :content
+    = f.text_area :content, id: 'froala-editor'
 
   .div
     = f.submit
