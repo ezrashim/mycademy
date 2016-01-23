@@ -44,7 +44,8 @@
   $(function(){
     $('.button-collapse').sideNav();
     $('#froala-editor').froalaEditor({
-      heightMin: 200,
+      toolbarInline: false,
+      heightMin: 300,
       heightMax: 400,
       toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', '|', 'color', 'emoticons', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', '-', 'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable', '|', 'quote', 'insertHR', 'undo', 'redo', 'clearFormatting', 'selectAll', 'html' ]
     });

@@ -1,6 +1,9 @@
 - @courses.each do |course|
-  .col.s12.m4
+  .col.s12
     %div
       -# = image_tag()
-    %h5.center= link_to course.title, course_path(course)
-    %p.light= course.description
+    %h5.center
+      %a{ href: course_path(course) }
+        %i.material-icons subject
+        = course.title
+    %p.light.center= course.description

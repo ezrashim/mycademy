@@ -15,7 +15,7 @@ feature 'update user information', %{
     user = create(:user)
     sign_in_as(user)
 
-    click_link "#{user.first_name}"
+    first(:link, "#{user.first_name}").click
     click_link 'Update'
 
     fill_in('First Name', with: 'Barbara')

@@ -21,10 +21,10 @@ feature 'create a lesson', %{
   scenario 'leader can create a lesson' do
     sign_in_as(leader)
     visit course_path(course)
-    click_link 'Add Lesson'
+    click_link 'Create Lesson'
 
     fill_in 'Title', with: "froala is awesome!!!"
-    fill_in 'Content', with: "let's see how this turns out!!!"
+    fill_in 'froala-editor', with: "let's see how this turns out!!!"
 
     click_button 'Create Lesson'
 
