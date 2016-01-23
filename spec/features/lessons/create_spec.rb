@@ -31,4 +31,27 @@ feature 'create a lesson', %{
     expect(page).to have_content "froala is awesome!!!"
     expect(page).to have_content "let's see how this turns out!!!"
   end
+
+  scenario 'learner cannot create a lesson' do
+    sign_in_as(learner)
+    visit course_path(course)
+
+    expect(page).to_not have_content 'Create Lesson'
+    expect(page).to have_content 'View My Progress'
+  end
+
+  scenario 'visitor cannot create a lesson' do
+    sign_in_as(user)
+    visit course_path(course)
+
+    expect(page).to_not have_content 'Create Lesson'
+    expect(page).to have_content 'Join Course'
+  end
+
+  scenario 'unauthenticated user cannot create a lesson' do
+    visit course_path(course)
+
+    expect(page).to_not have_content 'Create Lesson'
+    expect(page).to have_content 'Join Mycademy'
+  end
 end
