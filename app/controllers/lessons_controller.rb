@@ -22,6 +22,7 @@ class LessonsController < ApplicationController
   def new
     @course = Course.find(params[:course_id])
     @lesson = Lesson.new
+    @enrollment = Enrollment.find_by(user: current_user, course: @course)
   end
 
   private

@@ -54,4 +54,11 @@ feature 'create a lesson', %{
     expect(page).to_not have_content 'Create Lesson'
     expect(page).to have_content 'Join Mycademy'
   end
+
+  scenario 'visitor cannot create a lesson via url' do
+    sign_in_as(user)
+    visit new_course_lesson_path(course)
+
+    expect(page).to_not have_content 'Content'
+  end
 end

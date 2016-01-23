@@ -4,7 +4,7 @@
 - if user_signed_in? && @enrollment.nil?
   %div= link_to 'Join Course'
 - elsif current_user.nil?
-  %div= link_to 'Join Mycademy'
+  %div= link_to 'Join Mycademy', new_user_registration_path
 - elsif @enrollment.leader?
   %div= link_to 'Delete Course', course_path(@course), method: :delete
   %div= link_to 'Update Course', edit_course_path(@course)
@@ -14,11 +14,7 @@
 
 - @lessons.each do |lesson|
   %ul
-  - if !user_signed_in?
-    %li= link_to lesson.title, new_user_registration_path
-  - elsif user_signed_in? && @enrollment.nil?
-    %li= link_to lesson.title, course_path(@course)
-  - elsif user_signed_in? && @enrollment.learner?
+  - if user_signed_in? && !@enrollment.nil? && ( @enrollment.learner? || @enrollment.leader? )
     %li= link_to lesson.title, course_lesson_path(@course, lesson)
   - else
-    %li= link_to lesson.title, course_lesson_path(@course, lesson)
+    %li= lesson.title

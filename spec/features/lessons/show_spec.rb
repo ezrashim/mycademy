@@ -6,10 +6,8 @@ feature 'learners can view lesson contents', %{
   So I can learn from the course.
   } do
   # ACCEPTANCE CRITERIA
-  # * As a learner, I can view the content of the lesson,
-  # * and view a button to 'Quiz'.
-  # * As a leader, I can view the content of the lesson,
-  # * and view the button to 'Quiz'.
+  # * As a learner, I can view the content of the lesson.
+  # * As a leader, I can view the content of the lesson.
   # * As an authenticated user, I cannot view the content to the lesson.
   # * As a visitor, I cannot view the content of the lesson.
 
@@ -31,5 +29,41 @@ feature 'learners can view lesson contents', %{
     expect(page).to have_content lesson.content
     expect(page).to_not have_content 'Join Course'
     expect(page).to_not have_content 'Join Mycademy'
+  end
+
+  scenario 'leader can view the content of the lesson' do
+    lesson = course.lessons.first
+
+    sign_in_as(leader)
+    visit course_path(course)
+    click_link lesson.title
+
+    expect(page).to have_content lesson.title
+    expect(page).to have_content lesson.content
+    expect(page).to_not have_content 'Join Course'
+    expect(page).to_not have_content 'Join Mycademy'
+  end
+
+  scenario 'user cannot view the content of the lesson' do
+    lesson = course.lessons.first
+
+    sign_in_as(user)
+    visit course_path(course)
+
+    expect(page).to have_content lesson.title
+    expect(page).to_not have_content lesson.content
+    expect(page).to have_content 'Join Course'
+    expect(page).to_not have_content 'Join Mycademy'
+  end
+
+  scenario 'user cannot view the content of the lesson' do
+    lesson = course.lessons.first
+
+    visit course_path(course)
+
+    expect(page).to have_content lesson.title
+    expect(page).to_not have_content lesson.content
+    expect(page).to_not have_content 'Join Course'
+    expect(page).to have_content 'Join Mycademy'
   end
 end
