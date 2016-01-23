@@ -28,7 +28,9 @@ feature 'view lessons', %{
   scenario 'visitor can click links and lead to join page' do
     visit root_path
     click_link(course.title)
-    click_link(course.lessons.first.title)
+    expect(page).to have_content course.lessons.first.title
+
+    click_link 'Join Mycademy'
 
     expect(page).to have_content 'Sign up'
     expect(page).to have_content 'First Name'
@@ -54,7 +56,7 @@ feature 'view lessons', %{
     expect(page).to have_content lesson.content
   end
 
-  scenario 'user can view links to lessons' do
+  scenario 'user can view lesson titles' do
     lesson = course.lessons.first
     sign_in_as(user)
     click_link(course.title)
@@ -66,7 +68,6 @@ feature 'view lessons', %{
     sign_in_as(user)
     click_link(course.title)
 
-    expect(page).to have_content "Yo, sorry. You gotta join the team first."
     expect(page).to have_content 'Join Course'
   end
 
