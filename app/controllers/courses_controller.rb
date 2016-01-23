@@ -17,7 +17,7 @@ class CoursesController < ApplicationController
       flash[:notice] = "You are now ready to lead a course!"
       redirect_to course_path(@course)
     else
-      flash[:notice] = @course.errors.full_messages
+      flash.now[:notice] = @course.errors.full_messages
       render 'new'
     end
   end

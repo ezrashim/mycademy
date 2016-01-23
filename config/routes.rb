@@ -6,9 +6,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
 
   resources :courses do
-    resources :lessons, only: [:index]
+    resources :lessons, only: [:index, :show, :new, :create]
   end
-
-  resources :lessons, only: [:show]
 
 end

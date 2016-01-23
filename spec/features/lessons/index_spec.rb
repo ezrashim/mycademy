@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-feature 'create a lesson', %{
+feature 'view lessons', %{
   As a leader,
-  I should be able to create a lesson,
-  So I can add lessons to the course
+  I should be able to view lessons in each course,
+  So I can review lessons for the course
   } do
   # ACCEPTANCE CRITERIA
-  # * As a leader, I can add a lesson
-  # * So I can view the lesson.
-  # * If I am a learner, I cannot add a lesson.
+  # * As a leader, I can view lessons
+  # * So I can review them.
+  # * If I am a learner, I cannot view the lesson.
   # * If I am a visitor, I cannot view the lesson.
 
   let!(:leader) { create :user }

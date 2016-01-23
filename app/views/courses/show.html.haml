@@ -8,6 +8,7 @@
 - elsif @enrollment.leader?
   %div= link_to 'Delete Course', course_path(@course), method: :delete
   %div= link_to 'Update Course', edit_course_path(@course)
+  %div= link_to 'Create Lessons', new_course_lesson_path(@course)
 - else
   %div= link_to 'View My Progress'
 
@@ -18,7 +19,7 @@
   - elsif user_signed_in? && @enrollment.nil?
     %li= link_to lesson.title, course_path(@course)
   - elsif user_signed_in? && @enrollment.learner?
-    %li= link_to lesson.title, lesson_path(lesson)
+    %li= link_to lesson.title, course_lesson_path(@course, lesson)
   - else
-    %li= link_to lesson.title, lesson_path(lesson)
-    %li= link_to 'Create Lessons', '#'
+    %li= link_to lesson.title, course_lesson_path(@course, lesson)
+    %li= link_to 'Add Lesson', new_course_lesson_path(@course)
