@@ -13,7 +13,7 @@ feature 'delete account', %{
     user = create(:user)
     sign_in_as(user)
 
-    click_link("#{user.first_name}")
+    first(:link, "#{user.first_name}").click
     click_link("Update")
 
     click_button("Cancel my account")
