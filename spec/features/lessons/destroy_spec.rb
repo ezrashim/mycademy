@@ -41,6 +41,4 @@ feature 'destroy a lesson', %{
     expect(page).to have_content lesson.content
     expect(page).to_not have_link 'Delete Lesson'
   end
-
-
 end
