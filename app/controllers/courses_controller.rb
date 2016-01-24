@@ -26,11 +26,6 @@ class CoursesController < ApplicationController
     course
     @lessons = Lesson.where(course_id: course)
     @enrollment = Enrollment.find_by(user: current_user, course: course)
-
-    if user_signed_in? && @enrollment.nil?
-      flash.now[:notice] = "Yo, sorry. You gotta join the team first."
-      render 'show'
-    end
   end
 
   def edit
@@ -49,7 +44,9 @@ class CoursesController < ApplicationController
 
   def destroy
     course
-    if @course.destroy
+    @lessons = course.lessons
+    @enrollments = Enrollment.where(course: course)
+    if @lessons.destroy_all && @enrollments.destroy_all && @course.destroy
       flash[:notice] = "Hey buddy, you just deleted your own course!"
       redirect_to root_path
     else
