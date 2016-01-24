@@ -39,6 +39,30 @@ class LessonsController < ApplicationController
     end
   end
 
+  def edit
+    @course = Course.find(params[:course_id])
+    @lesson = Lesson.find(params[:id])
+    @enrollment = Enrollment.find_by(user: current_user, course: @course)
+    if !@enrollment.nil? && @enrollment.leader?
+      render 'edit'
+    else
+      redirect_to course_lesson_path(@course, @lesson)
+    end
+  end
+
+  def update
+    @course = Course.find(params[:course_id])
+    @lesson = Lesson.find(params[:id])
+    @enrollment = Enrollment.find_by(user: current_user, course: @course)
+    if @lesson.update(lesson_params)
+      flash[:notice] = "#{current_user.first_name}, did you just make your lesson even better? Sweet!"
+      redirect_to course_lesson_path(@course, @lesson)
+    else
+      flash.now[:notice] = "Sorry buddy, we couldn't change your lesson. Your input is invalid."
+      render 'edit'
+    end
+  end
+
   private
 
   def lesson_params

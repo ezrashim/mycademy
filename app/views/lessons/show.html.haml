@@ -3,3 +3,4 @@
 
 - if user_signed_in? && !@enrollment.nil? && @enrollment.leader?
   %li= link_to 'Delete Lesson', course_lesson_path(@course, @lesson), method: :delete
+  %li= link_to 'Update Lesson', edit_course_lesson_path(@course, @lesson)
