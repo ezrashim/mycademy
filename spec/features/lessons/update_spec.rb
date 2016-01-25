@@ -18,7 +18,7 @@ feature 'update a lesson', %{
   let!(:leader_enrollment) do
     create :enrollment, role: 'leader', user: leader, course: course
   end
-  let!(:learner_enrollment) do 
+  let!(:learner_enrollment) do
     create :enrollment, role: 'learner', user: learner, course: course
   end
 
