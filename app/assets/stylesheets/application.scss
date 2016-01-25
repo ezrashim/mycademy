@@ -1,5 +1,6 @@
 @import "components/color";
 $primary-color: color("blue-grey", "darken-3") !default;
+$link-color: color("teal", "lighten-1") !default;
 @import "materialize";
 @import "froala_editor.min";
 @import "froala_style.min";
