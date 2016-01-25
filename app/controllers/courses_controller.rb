@@ -24,7 +24,7 @@ class CoursesController < ApplicationController
 
   def show
     course
-    @lessons = Lesson.where(course_id: course)
+    @lessons = Lesson.where(course_id: course).sort_by { |a| a.lesson_no }
     @enrollment = Enrollment.find_by(user: current_user, course: course)
   end
 
