@@ -76,7 +76,7 @@ feature 'leaders can view the list of students enrolled in his or her course', %
 
   scenario 'visitor cannot view the student enrollment in the course' do
     visit course_path(course)
-    
+
     expect(page).to_not have_content "View Enrollment"
     expect(page).to have_link "Join Mycademy"
   end
