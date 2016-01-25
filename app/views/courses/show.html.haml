@@ -9,8 +9,10 @@
   %div= link_to 'Delete Course', course_path(@course), method: :delete
   %div= link_to 'Update Course', edit_course_path(@course)
   %div= link_to 'Create Lessons', new_course_lesson_path(@course)
+  %div= link_to 'View Enrollment', enrollments_path(course_id: @course.id)
 - else
-  %div= link_to 'View My Progress'
+  %div= link_to 'View My Progress', '#'
+  %div= link_to 'View Enrollment', enrollments_path(course_id: @course.id)
 
 - @lessons.each do |lesson|
   %ul

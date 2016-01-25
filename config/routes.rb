@@ -9,5 +9,5 @@ Rails.application.routes.draw do
     resources :lessons
   end
 
-  resources :enrollments, only: [:new, :create]
+  resources :enrollments, only: [:new, :create, :index, :destroy]
 end
