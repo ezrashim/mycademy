@@ -99,10 +99,10 @@ class LessonsController < ApplicationController
   private
 
   def lesson_params
-      params.require(:lesson).permit(
-        :title,
-        :content,
-        :lesson_no
-      ).merge(course: Course.find(params[:course_id]))
+    params.require(:lesson).permit(
+      :title,
+      :content,
+      :lesson_no
+    ).merge(course: Course.find(params[:course_id]))
   end
 end
