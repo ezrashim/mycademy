@@ -24,7 +24,8 @@ feature 'join a course', %{
     fill_in 'Passcode', with: 'passcode'
     click_button 'Join'
 
-    expect(page).to have_content("Welcome to #{course.title}! You are now enrolled!")
+    expect(page).to have_content("Welcome to #{course.title}!
+    You are now enrolled!")
     expect(page).to have_content course.title
     expect(page).to have_content course.description
     expect(page).to have_link course.lessons.first.title
