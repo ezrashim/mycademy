@@ -1,7 +1,7 @@
 = form_for [@course, @lesson] do |f|
   .div
     = f.label :lesson_no
-    = f.number_field :lesson_no, value: @course.lessons.length + 1
+    = f.number_field :lesson_no, value: @lesson_no
   .div
     = f.label :title
     = f.text_field :title

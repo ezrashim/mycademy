@@ -8,14 +8,19 @@ feature 'update a lesson', %{
   # ACCEPTANCE CRITERIA
   # * As a leader of the course, I can update lessons
   # * So that learners can see changed details.
+  # * When lesson is updated, lesson no. stays unchanged.
   # * If I am a learner, I cannot see the update button.
 
   let!(:leader) { create :user }
   let!(:learner) { create :user }
   let!(:user) { create :user }
   let!(:course) { create :course_with_lessons }
-  let!(:leader_enrollment) { create :enrollment, role: 'leader', user: leader, course: course }
-  let!(:learner_enrollment) { create :enrollment, role: 'learner', user: learner, course: course }
+  let!(:leader_enrollment) do
+    create :enrollment, role: 'leader', user: leader, course: course
+  end
+  let!(:learner_enrollment) do
+    create :enrollment, role: 'learner', user: learner, course: course
+  end
 
   scenario 'leader can updte the lesson and lesson gets updated' do
     lesson = course.lessons.first
@@ -32,7 +37,15 @@ feature 'update a lesson', %{
 
     expect(page).to have_content("I changed the lesson title")
     expect(page).to have_content("Froala editor rocks!!!!!")
-    expect(page).to have_content("#{leader.first_name}, did you just make your lesson even better? Sweet!")
+    expect(page).to have_content("#{leader.first_name},
+    did you just make your lesson even better? Sweet!")
+
+    click_link('Course Overview')
+
+    expect(page).to have_content(course.title)
+    expect(page).to have_content(course.description)
+    expect(page).to have_content("Lesson #{lesson.lesson_no}:
+    I changed the lesson title")
   end
 
   scenario 'leader cannot update the lesson if one of the field is blank' do
@@ -46,7 +59,8 @@ feature 'update a lesson', %{
     fill_in('froala-editor', with: "")
     click_button('Update Lesson')
 
-    expect(page).to have_content("Sorry buddy, we couldn't change your lesson. Your input is invalid.")
+    expect(page).to have_content("Sorry buddy, we couldn't change your lesson.
+    Your input is invalid.")
     expect(page).to have_field("Title", with: lesson.title)
     expect(page).to have_field('froala-editor')
   end
