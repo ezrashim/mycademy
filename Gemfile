@@ -17,6 +17,7 @@ gem 'puma'
 gem 'carrierwave'
 gem 'wysiwyg-rails'
 gem 'font-awesome-rails'
+# gem 'twilio-ruby', '~> 4.2.1'
 
 group :development do
   gem 'web-console', '~> 2.0'

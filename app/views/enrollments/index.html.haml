@@ -1,0 +1,11 @@
+.div
+  %li= "Led by #{@leader.first_name} #{@leader.last_name}"
+  - if @enrollments.present? && current_user == @leader
+    - @enrollments.each do |student|
+      - if student.learner?
+        %li= link_to "#{student.user.first_name} #{student.user.last_name}", '#'
+        %li= link_to 'Remove', enrollment_path(student, course_id: student.course), method: :delete
+  - elsif @enrollments.present? && @enrollments.find_by(user: current_user).learner?
+    - @enrollments.each do |student|
+      - unless student.user == current_user
+        %li= "#{student.user.first_name} #{student.user.last_name}"
