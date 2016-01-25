@@ -9,4 +9,5 @@ Rails.application.routes.draw do
     resources :lessons
   end
 
+  resources :enrollments, only: [:new, :create]
 end

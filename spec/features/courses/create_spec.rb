@@ -16,6 +16,7 @@ feature 'create a course', %{
     click_link("Lead")
     fill_in("Title", with: "Math")
     fill_in("Description", with: "All about math")
+    fill_in("Passcode", with: "passcode")
     click_button("Create Course")
 
     expect(page).to have_content("Math")

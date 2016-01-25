@@ -2,7 +2,7 @@
 %h3= @course.description
 
 - if user_signed_in? && @enrollment.nil?
-  %div= link_to 'Join Course'
+  %div= link_to 'Join Course', new_enrollment_path(course_id: @course.id)
 - elsif current_user.nil?
   %div= link_to 'Join Mycademy', new_user_registration_path
 - elsif @enrollment.leader?

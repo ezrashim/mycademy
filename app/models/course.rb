@@ -5,4 +5,5 @@ class Course < ActiveRecord::Base
 
   validates :title, presence: true
   validates :description, presence: true
+  validates :passcode, presence: true
 end

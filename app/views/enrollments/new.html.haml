@@ -1,0 +1,4 @@
+= form_tag(enrollments_path(course_id: @course.id)) do
+  = label_tag(:passcode)
+  = text_field_tag(:passcode)
+  = submit_tag("Join")
