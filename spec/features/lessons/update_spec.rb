@@ -15,10 +15,12 @@ feature 'update a lesson', %{
   let!(:learner) { create :user }
   let!(:user) { create :user }
   let!(:course) { create :course_with_lessons }
-  let!(:leader_enrollment) { create :enrollment, role: 'leader',
-    user: leader, course: course }
-  let!(:learner_enrollment) { create :enrollment, role: 'learner',
-    user: learner, course: course }
+  let!(:leader_enrollment) do
+    create :enrollment, role: 'leader', user: leader, course: course
+  end
+  let!(:learner_enrollment) do 
+    create :enrollment, role: 'learner', user: learner, course: course
+  end
 
   scenario 'leader can updte the lesson and lesson gets updated' do
     lesson = course.lessons.first
