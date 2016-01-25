@@ -8,6 +8,7 @@ feature 'update a lesson', %{
   # ACCEPTANCE CRITERIA
   # * As a leader of the course, I can update lessons
   # * So that learners can see changed details.
+  # * When lesson is updated, lesson no. stays unchanged.
   # * If I am a learner, I cannot see the update button.
 
   let!(:leader) { create :user }
@@ -33,6 +34,12 @@ feature 'update a lesson', %{
     expect(page).to have_content("I changed the lesson title")
     expect(page).to have_content("Froala editor rocks!!!!!")
     expect(page).to have_content("#{leader.first_name}, did you just make your lesson even better? Sweet!")
+
+    click_link('Course Overview')
+
+    expect(page).to have_content(course.title)
+    expect(page).to have_content(course.description)
+    expect(page).to have_content("Lesson 1: I changed the lesson title")
   end
 
   scenario 'leader cannot update the lesson if one of the field is blank' do

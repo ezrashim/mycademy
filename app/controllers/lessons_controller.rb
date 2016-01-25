@@ -11,6 +11,7 @@ class LessonsController < ApplicationController
     @course = Course.find(params[:course_id])
     @lesson = Lesson.new(lesson_params)
     @lesson.course = @course
+    @lesson_no = @course.lessons.length + 1
     if @lesson.save
       flash[:notice] = " Woohoo! You've just added a lesson."
       redirect_to course_lesson_path(@course, @lesson)
@@ -25,6 +26,7 @@ class LessonsController < ApplicationController
     @course = Course.find(params[:course_id])
     @lesson = Lesson.new
     @enrollment = Enrollment.find_by(user: current_user, course: @course)
+    @lesson_no = @course.lessons.length + 1
   end
 
   def destroy
@@ -45,6 +47,7 @@ class LessonsController < ApplicationController
     @course = Course.find(params[:course_id])
     @lesson = Lesson.find(params[:id])
     @enrollment = Enrollment.find_by(user: current_user, course: @course)
+    @lesson_no = @lesson.lesson_no
     if !@enrollment.nil? && @enrollment.leader?
       render 'edit'
     else
