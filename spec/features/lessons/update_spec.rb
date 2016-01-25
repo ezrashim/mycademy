@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'update a lesson', %{
   As a leader of the course,
   I should be able to update the details of a lesson,
-  So learners can view the changed course details.
+  So learners can view the changed lesson details.
 } do
   # ACCEPTANCE CRITERIA
   # * As a leader of the course, I can update lessons

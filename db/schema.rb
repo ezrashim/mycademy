@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20160122161905) do
     t.integer  "course_id",  null: false
     t.string   "title",      null: false
     t.text     "content",    null: false
-    t.integer  "order_no"
+    t.integer  "lesson_no",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
