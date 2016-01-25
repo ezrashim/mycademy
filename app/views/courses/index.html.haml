@@ -1,10 +1,14 @@
 .container
   .row.center
     .col.s12
-    - if !user_signed_in?
-      = render 'join'
-    - else
-      = render 'lead'
+      %%br
+        %h2.center.blue-grey-text.text-darken-3 Welcome to Mycademy.
+        %h5.center.blue-grey-text.text-darken-3 Design and lead your own curriculum.
+        - if !user_signed_in?
+          = render 'join_mycademy'
+        - else
+          = render 'lead_course'
+          = render 'join_course'
   .section
     .row
       = render 'courses'

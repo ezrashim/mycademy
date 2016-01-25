@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20160122161905) do
     t.string   "title",       null: false
     t.string   "description", null: false
     t.string   "icon"
+    t.string   "passcode",    null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

@@ -22,7 +22,7 @@ feature 'update a lesson', %{
     create :enrollment, role: 'learner', user: learner, course: course
   end
 
-  scenario 'leader can updte the lesson and lesson gets updated' do
+  scenario 'leader can update the lesson and lesson gets updated' do
     lesson = course.lessons.first
     sign_in_as(leader)
     visit course_lesson_path(course, lesson)

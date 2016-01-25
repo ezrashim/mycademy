@@ -4,6 +4,7 @@ class CreateCourses < ActiveRecord::Migration
       t.string :title, null: false
       t.string :description, null: false
       t.string :icon
+      t.string :passcode, null: false
 
       t.timestamps null: false
     end
