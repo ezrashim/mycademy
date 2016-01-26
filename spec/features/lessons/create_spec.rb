@@ -50,7 +50,7 @@ feature 'create a lesson', %{
 
   scenario 'unauthenticated user cannot create a lesson' do
     visit course_path(course)
-    
+
     expect(page).to_not have_content 'Create Lesson'
     expect(page).to have_content 'Join Mycademy'
   end

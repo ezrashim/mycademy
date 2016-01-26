@@ -15,7 +15,7 @@ feature 'view questions', %{
   let!(:learner) { create :user }
   let!(:user) { create :user }
   let!(:course) { create :course }
-  let!(:lesson) { create :lesson, course: course}
+  let!(:lesson) { create :lesson, course: course }
   let!(:question) { create :question, lesson: lesson }
   let!(:leader_enrollment) do
     create :enrollment, role: 'leader', user: leader, course: course

@@ -15,7 +15,7 @@ feature 'create a question', %{
   let!(:learner) { create :user }
   let!(:user) { create :user }
   let!(:course) { create :course }
-  let!(:lesson) { create :lesson, course: course}
+  let!(:lesson) { create :lesson, course: course }
   let!(:question) { create :question, lesson: lesson }
   let!(:leader_enrollment) { create :enrollment, role: 'leader', user: leader, course: course }
   let!(:learner_enrollment) { create :enrollment, role: 'learner', user: learner, course: course }

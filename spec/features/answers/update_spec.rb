@@ -14,7 +14,7 @@ feature 'update an answer', %{
   let!(:learner) { create :user }
   let!(:user) { create :user }
   let!(:course) { create :course }
-  let!(:lesson) { create :lesson, course: course}
+  let!(:lesson) { create :lesson, course: course }
   let!(:question) { create :question, lesson: lesson }
   let!(:answer) { create :answer, enrollment: learner_enrollment, question: question}
   let!(:leader_enrollment) do
