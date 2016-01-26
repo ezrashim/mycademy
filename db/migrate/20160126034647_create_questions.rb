@@ -4,7 +4,6 @@ class CreateQuestions < ActiveRecord::Migration
       t.string :question, null: false
       t.belongs_to :lesson, index: true, null: false
 
-
       t.timestamps null: false
     end
   end
