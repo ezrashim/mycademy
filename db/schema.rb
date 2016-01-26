@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126034647) do
+ActiveRecord::Schema.define(version: 20160126181545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.text     "answer",        null: false
+    t.integer  "question_id",   null: false
+    t.integer  "enrollment_id", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "answers", ["enrollment_id"], name: "index_answers_on_enrollment_id", using: :btree
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
     t.string   "title",       null: false
@@ -48,10 +59,10 @@ ActiveRecord::Schema.define(version: 20160126034647) do
   add_index "lessons", ["course_id"], name: "index_lessons_on_course_id", using: :btree
 
   create_table "questions", force: :cascade do |t|
-    t.string   "description", null: false
-    t.integer  "lesson_id",   null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "question",   null: false
+    t.integer  "lesson_id",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "questions", ["lesson_id"], name: "index_questions_on_lesson_id", using: :btree

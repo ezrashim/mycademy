@@ -2,8 +2,9 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    lesson
-    @questions = Question.where(lesson: @lesson)
+    @course = Course.find(lesson.course.id)
+    @enrollment = Enrollment.find_by(user: current_user, course: @course)
+    @questions = Question.where(lesson: lesson)
   end
 
   def create
@@ -29,6 +30,7 @@ class QuestionsController < ApplicationController
     @lesson = @question.lesson
     @course = Course.find(@lesson.course.id)
     @enrollment = Enrollment.find_by(user: current_user, course: @course)
+    @answer = Answer.new
   end
 
   def edit
@@ -48,6 +50,17 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def update
+    @question = Question.find(params[:id])
+    if @question.update(question_params)
+      flash[:notice] = "Ask different! :p"
+      redirect_to question_path(@question)
+    else
+      flash.now[:notice] = "I say just keep it as is...or you can try to change again."
+      render :show
+    end
+  end
+
   private
 
   def lesson
@@ -56,7 +69,7 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.require(:question).permit(
-      :description,
+      :question,
       :lesson_id
     )
   end

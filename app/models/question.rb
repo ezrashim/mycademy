@@ -1,6 +1,7 @@
 class Question < ActiveRecord::Base
   belongs_to :lesson
+  has_many :answers
 
-  validates :description, presence: true
+  validates :question, presence: true
   validates :lesson_id, presence: true
 end

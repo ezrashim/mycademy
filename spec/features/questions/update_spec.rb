@@ -2,8 +2,8 @@ require 'rails_helper'
 
 feature 'update a question', %{
   As a leader of the course,
-  I should be able to upate the description of a question,
-  So learners can view the changed question description.
+  I should be able to upate the question of a question,
+  So learners can view the changed question question.
 } do
   # ACCEPTANCE CRITERIA
   # * As a leader of the course, I can update the Questions
@@ -28,6 +28,13 @@ feature 'update a question', %{
     visit question_path(question)
     click_link('Update Question')
 
-    expect(page).to have_field 'Question', with: question.description
+    expect(page).to have_field 'Question', with: question.question
+
+    fill_in 'Question', with: "I'm gonna change the question."
+
+    click_button('Update Question')
+
+    expect(page).to have_content "Ask different!"
+    expect(page).to have_content "I'm gonna change the question."
   end
 end

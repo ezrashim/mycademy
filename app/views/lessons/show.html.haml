@@ -7,6 +7,6 @@
   %li= link_to 'Create Question', new_question_path(lesson_id: @lesson.id)
 
 - @questions.each do |question|
-  %li= link_to question.description ,questions_path(lesson_id: @lesson.id)
+  %li= link_to question.question ,questions_path(lesson_id: @lesson.id)
 
 %li= link_to 'Course Overview', course_path(@course)
