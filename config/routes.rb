@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   end
 
   resources :enrollments, only: [:new, :create, :index, :destroy]
+
+  resources :questions, only: [:index, :create, :new, :show]
 end

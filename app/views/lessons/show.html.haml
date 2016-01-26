@@ -4,5 +4,9 @@
 - if user_signed_in? && !@enrollment.nil? && @enrollment.leader?
   %li= link_to 'Delete Lesson', course_lesson_path(@course, @lesson), method: :delete
   %li= link_to 'Update Lesson', edit_course_lesson_path(@course, @lesson)
+  %li= link_to 'Create Question', new_question_path(lesson_id: @lesson.id)
+
+- @questions.each do |question|
+  %li= link_to question.description
 
 %li= link_to 'Course Overview', course_path(@course)

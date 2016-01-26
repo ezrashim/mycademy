@@ -5,6 +5,7 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
     @course = Course.find(params[:course_id])
     @enrollment = Enrollment.find_by(user: current_user, course: @course)
+    @questions =  Question.where(lesson: @lesson)
   end
 
   def create
