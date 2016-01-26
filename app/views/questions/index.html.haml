@@ -1,0 +1,2 @@
+- @questions.each do |question|
+  %li= link_to question.question, question_path(question, lesson_id: @lesson.id)

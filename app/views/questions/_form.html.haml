@@ -1,0 +1,11 @@
+= form_for @question do |f|
+  .div
+    = f.label :lesson_id
+    = f.number_field :lesson_id, value: @lesson.id
+
+  .div
+    = f.label :question, 'Question'
+    = f.text_field :question
+
+  .div
+    = f.submit

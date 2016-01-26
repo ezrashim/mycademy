@@ -1,0 +1,15 @@
+= form_for [@question, @answer] do |f|
+  .div
+    = f.label :enrollment_id
+    = f.number_field :enrollment_id, value: @enrollment.id
+
+  .div
+    = f.label :question_id
+    = f.number_field :question_id, value: @question.id
+
+  .div
+    = f.label :answer, "Answer"
+    = f.text_area :answer, id: 'froala-editor'
+
+  .div
+    = f.submit
