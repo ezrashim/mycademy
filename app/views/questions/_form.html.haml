@@ -1,7 +1,7 @@
 = form_for @question do |f|
   .div
     = f.label :lesson_id
-    = f.hidden_field :lesson_id, value: @lesson.id
+    = f.number_field :lesson_id, value: @lesson.id
 
   .div
     = f.label :description, 'Question'

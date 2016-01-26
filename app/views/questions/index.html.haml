@@ -1,3 +1,2 @@
 - @questions.each do |question|
-  %li= question.description
-  %li= link_to 'Update Question', edit_question_path(question, lesson_id: @lesson.id) 
+  %li= link_to question.description, question_path(question, lesson_id: @lesson.id)

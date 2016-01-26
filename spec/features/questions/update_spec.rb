@@ -25,7 +25,7 @@ feature 'update a question', %{
 
   scenario 'leader can update the question' do
     sign_in_as leader
-    visit questions_path(lesson_id: lesson.id)
+    visit question_path(question)
     click_link('Update Question')
 
     expect(page).to have_field 'Question', with: question.description

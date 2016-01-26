@@ -39,4 +39,10 @@ feature 'create a question', %{
     expect(page).to_not have_content 'Create Question'
     expect(page).to have_link question.description
   end
+
+  scenario 'visitor cannot view the question' do
+    visit course_lesson_path(course, lesson)
+
+    expect(page).to have_content 'Log in'
+  end
 end
