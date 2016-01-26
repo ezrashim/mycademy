@@ -8,9 +8,7 @@
         %li= link_to current_user.first_name, user_path(current_user)
         %li= link_to 'Sign Out', destroy_user_session_path, method: :delete
       - else
-        %li
-          %a{ href: new_user_session_path }
-            %i.material-icons perm_identity
+        %li= link_to 'Sign In', new_user_session_path
     %ul#mobile-demo.side-nav
       - if user_signed_in?
         %li= link_to "#{current_user.first_name}", user_path(current_user)
