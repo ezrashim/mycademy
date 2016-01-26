@@ -9,5 +9,4 @@ describe Lesson do
   it { should_not have_valid(:content).when("", nil) }
   it { should have_valid(:lesson_no).when(1) }
   it { should_not have_valid(:lesson_no).when("", nil) }
-
 end
