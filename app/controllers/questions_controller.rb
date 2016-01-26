@@ -11,7 +11,7 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
     if @question.save
       flash[:notice] = "You just created a new question!"
-      redirect_to question_path(@question)
+      redirect_to questions_path(lesson_id: @lesson.id)
     else
       flash[:notice] = "Question couldn't be posted."
       render 'new'
@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
 
   def edit
     @question = Question.find(params[:id])
-    @lesson = Lesson.find(params[:lesson_id]) 
+    @lesson = Lesson.find(params[:lesson_id])
   end
 
   private
