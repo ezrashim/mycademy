@@ -1,6 +1,11 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @lesson = Lesson.find(params[:lesson_id])
+    @questions = Question.where(lesson: @lesson)
+  end
+
   def create
     @lesson = Lesson.find(params[:question][:lesson_id])
     @question = Question.new(question_params)
@@ -20,6 +25,11 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+  end
+
+  def edit
+    @question = Question.find(params[:id])
+    @lesson = Lesson.find(params[:lesson_id]) 
   end
 
   private
