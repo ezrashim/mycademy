@@ -1,29 +1,35 @@
 .div
   %h3.center= @course.title
   %h5.center= "Led by #{@leader.first_name} #{@leader.last_name}"
-  %table.responsive-table
-    %thead
-      %tr
-        %th{ "data-field" => "id" } Name
-        %th{ "data-field" => "email" } Email
+.section
+  .container
+    %table.responsive-table.card-panel.hoverable.highlight.centered
+      %thead
+        %tr
+          %th{ "data-field" => "id" } Name
+          %th{ "data-field" => "email" } Email
+          - if @enrollments.present? && current_user == @leader
+            %th{ "data-field" => "last_sign_in" } Last Signed In
+            %th{ "data-field" => "question_answered" } Questions Answered
+            %th{ "data-field" => "remove"} Edit
+      %tbody
         - if @enrollments.present? && current_user == @leader
-          %th{ "data-field" => "last_sign_in" } Last Signed In
-          %th{ "data-field" => "question_answered" } Questions Answered
-          %th{ "data-field" => "remove"} Edit
-
-    %tbody
-      - if @enrollments.present? && current_user == @leader
-        - @enrollments.each do |student|
-          - if student.learner?
-            %tr
-              %td= link_to "#{student.user.first_name} #{student.user.last_name}", '#'
-              %td= student.user.email
-              %td= student.user.last_sign_in_at.localtime.strftime("%-I:%M:%S %p %Z %-m/%-d/%-Y")
-              %td= link_to '#', '#'
-              %td= link_to 'Remove', enrollment_path(student, course_id: student.course), method: :delete
-      - elsif @enrollments.present? && @enrollments.find_by(user: current_user).learner?
-        - @enrollments.each do |student|
-          - unless student.user == current_user || student.user == @leader
-            %tr
-              %td "#{student.user.first_name} #{student.user.last_name}"
-              %td student.email
+          - @enrollments.each do |student|
+            - if student.learner?
+              %tr
+                %td= link_to "#{student.user.first_name} #{student.user.last_name}", '#'
+                %td= student.user.email
+                %td= student.user.last_sign_in_at.localtime.strftime("%-I:%M:%S %p %Z %-m/%-d/%-Y")
+                %td= link_to '#', '#'
+                %td= link_to 'Remove', enrollment_path(student, course_id: student.course), method: :delete
+        - elsif @enrollments.present? && @enrollments.find_by(user: current_user).learner?
+          - @enrollments.each do |student|
+            - unless student.user == current_user || student.user == @leader
+              %tr
+                %td "#{student.user.first_name} #{student.user.last_name}"
+                %td student.email
+.section
+  .container
+    .row
+      .col.s12.center-align
+        = render 'lessons/course_overview'
