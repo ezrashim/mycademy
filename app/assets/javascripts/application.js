@@ -21,7 +21,7 @@
   $(function(){
     $('.button-collapse').sideNav();
     tinymce.init({
-      selector: '.tinymce-content',
+      selector: '.tinymce',
       selector: 'textarea',
       height: 500,
       theme: 'modern',
