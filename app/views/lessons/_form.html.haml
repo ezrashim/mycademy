@@ -1,15 +1,15 @@
 = form_for [@course, @lesson] do |f|
-  .div
+  .div.input-field
     = f.label :lesson_no
     = f.number_field :lesson_no, value: @lesson_no
 
-  .div
-    = f.label :title
+  .div.input-field
+    = f.label :title, class: "tinymce-title"
     = f.text_field :title
 
   .div
     = f.label :content
-    = f.text_area :content, class: "tinymce", rows: 40, cols: 120
+    = f.text_area :content, class: "tinymce-content", rows: 40, cols: 120
 
   .div
     = f.submit

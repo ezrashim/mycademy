@@ -1,7 +1,7 @@
 .container
   .row
-    .col.s12.center
-      %h1= @lesson.title
+    .col.s12
+      %h1.center= @lesson.title
       = @lesson.content.html_safe
 
       - if user_signed_in? && !@enrollment.nil? && @enrollment.leader?
