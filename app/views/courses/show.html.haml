@@ -21,9 +21,7 @@
             %i.material-icons.left person add
             Join Course
         - elsif current_user.nil?
-          %a.btn-large.waves-effect.waves-light.teal{ href: new_user_registration_path }
-            %i.material-icons.left school
-            Join Mycademy
+          = render 'join_mycademy'
         - elsif @enrollment.leader?
           %a.btn-large.waves-effect.waves-light.teal#enrollment{ href: enrollments_path(course_id: @course.id) }
             %i.material-icons.left list
