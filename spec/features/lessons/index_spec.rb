@@ -85,6 +85,6 @@ feature 'view lessons', %{
     click_link(course.title)
 
     expect(page).to have_link lesson.title
-    expect(page).to have_link 'Create Lessons'
+    expect(page).to have_css '#add-lesson'
   end
 end

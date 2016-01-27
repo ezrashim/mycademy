@@ -20,7 +20,7 @@ feature 'update a course', %{
   scenario 'leader can update the course and course gets updated' do
     sign_in_as(leader)
     click_link(course.title)
-    click_link('Update Course')
+    find('#edit-course').click
 
     expect(page).to have_field('Title', with: course.title.to_s)
     expect(page).to have_field('Description', with: course.description.to_s)
@@ -37,7 +37,7 @@ feature 'update a course', %{
   scenario 'leader cannot update the course if one of the field is blank' do
     sign_in_as(leader)
     click_link(course.title)
-    click_link('Update Course')
+    find('#edit-course').click
 
     expect(page).to have_field('Title', with: course.title.to_s)
     expect(page).to have_field('Description', with: course.description.to_s)
@@ -54,7 +54,7 @@ feature 'update a course', %{
     sign_in_as(learner)
     click_link(course.title)
 
-    expect(page).to have_content('View My Progress')
+    expect(page).to have_content('My Progress')
     expect(page).to_not have_content('Update Course')
   end
 
@@ -64,6 +64,6 @@ feature 'update a course', %{
 
     expect(page).to have_content('Join Mycademy')
     expect(page).to_not have_content('Update Course')
-    expect(page).to_not have_content('View My Progress')
+    expect(page).to_not have_content('My Progress')
   end
 end

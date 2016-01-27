@@ -24,7 +24,7 @@ feature 'leaders can view the list of students enrolled in his or her course', %
   scenario 'leader can view the student enrollment in the course' do
     sign_in_as leader
     visit course_path(course)
-    click_link 'View Enrollment'
+    find('#enrollment').click
 
     expect(page).to have_content learner_1.first_name
     expect(page).to have_content learner_1.last_name
@@ -35,7 +35,7 @@ feature 'leaders can view the list of students enrolled in his or her course', %
   scenario 'leader can remove the student enrollment in the course' do
     sign_in_as leader
     visit course_path(course)
-    click_link 'View Enrollment'
+    find('#enrollment').click
     first(:link, 'Remove').click
 
     expect(page).to have_content "I'm sorry to hear that you removed
@@ -48,7 +48,7 @@ feature 'leaders can view the list of students enrolled in his or her course', %
   scenario 'learner can view the student enrollment in the course' do
     sign_in_as learner_1
     visit course_path(course)
-    click_link 'View Enrollment'
+    find('#enrollment').click
 
     expect(page).to have_content "Led by #{leader.first_name} #{leader.last_name}"
     expect(page).to have_content learner_2.first_name
@@ -59,7 +59,7 @@ feature 'leaders can view the list of students enrolled in his or her course', %
   scenario 'learner cannot remove the student enrollment in the course' do
     sign_in_as learner_1
     visit course_path(course)
-    click_link 'View Enrollment'
+    find('#enrollment').click
 
     expect(page).to_not have_link 'Remove'
     expect(page).to_not have_link "#{learner_2.first_name} #{learner_2.last_name}"
@@ -70,14 +70,14 @@ feature 'leaders can view the list of students enrolled in his or her course', %
     sign_in_as user
     visit course_path(course)
 
-    expect(page).to_not have_content "View Enrollment"
+    expect(page).to_not have_css '#enrollment'
     expect(page).to have_link "Join Course"
   end
 
   scenario 'visitor cannot view the student enrollment in the course' do
     visit course_path(course)
 
-    expect(page).to_not have_content "View Enrollment"
+    expect(page).to_not have_css '#enrollment'
     expect(page).to have_link "Join Mycademy"
   end
 end

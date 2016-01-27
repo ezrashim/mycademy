@@ -19,7 +19,7 @@ feature 'destroy a course', %{
   scenario "leader can delete the course" do
     sign_in_as(leader)
     click_link(course.title)
-    click_link('Delete')
+    find('#delete-course').click
 
     expect(page).to have_content("Hey buddy, you just deleted your own course!")
     expect(page).to_not have_content(course.title)
@@ -31,6 +31,6 @@ feature 'destroy a course', %{
 
     expect(page).to have_content(course.title)
     expect(page).to have_content(course.description)
-    expect(page).to_not have_content('Delete')
+    expect(page).to_not have_content('#delete-course')
   end
 end

@@ -29,7 +29,7 @@ feature 'destroy a lesson', %{
     expect(page).to_not have_content lesson.title
     expect(page).to have_content course.title
     expect(page).to have_content course.description
-    expect(page).to have_content 'Create Lesson'
+    expect(page).to have_css '#add-lesson'
   end
 
   scenario "learner cannot delete the course" do
