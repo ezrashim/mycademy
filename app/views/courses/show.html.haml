@@ -1,26 +1,52 @@
-%h1= @course.title
-%h3= @course.description
-
-- if user_signed_in? && @enrollment.nil?
-  %div= link_to 'Join Course', new_enrollment_path(course_id: @course.id)
-- elsif current_user.nil?
-  %div= link_to 'Join Mycademy', new_user_registration_path
-- elsif @enrollment.leader?
-  %div= link_to 'Delete Course', course_path(@course), method: :delete
-  %div= link_to 'Update Course', edit_course_path(@course)
-  %div= link_to 'Create Lessons', new_course_lesson_path(@course)
-  %div= link_to 'View Enrollment', enrollments_path(course_id: @course.id)
-- else
-  %div= link_to 'View My Progress', '#'
-  %div= link_to 'View Enrollment', enrollments_path(course_id: @course.id)
-
-- @lessons.each do |lesson|
-  %ul
+.container
+  .row
+    .col.s12.center
+      %h1= @course.title
+      %h3= @course.description
   - if user_signed_in? && !@enrollment.nil? && @enrollment.leader?
-    %li= link_to "Lesson #{lesson.lesson_no}: #{lesson.title}", course_lesson_path(@course, lesson)
-    %li= link_to 'down', course_lesson_path(@course, lesson, lesson_no: "down"), method: :patch, class: "down"
-    %li= link_to 'up', course_lesson_path(@course, lesson, lesson_no: "up"), method: :patch, class: "up"
-  - elsif user_signed_in? && !@enrollment.nil? && @enrollment.learner?
-    %li= link_to "Lesson #{lesson.lesson_no}: #{lesson.title}", course_lesson_path(@course, lesson)
-  - else
-    %li= "Lesson #{lesson.lesson_no}: #{lesson.title}"
+    .row
+      .col.s12.center-align
+        %a.btn.waves-effect.waves-light.teal#add-lesson{ href: new_course_lesson_path(@course) }
+          %i.material-icons add
+        %a.btn.waves-effect.waves-light.teal#edit-course{ href: edit_course_path(@course) }
+          %i.material-icons mode_edit
+        %a.btn.waves-effect.waves-light.teal#delete-course{ href: course_path(@course), "data-method" => "delete" }
+          %i.material-icons delete
+
+  .section
+    .row
+      .col.s12.center
+        - if user_signed_in? && @enrollment.nil?
+          %a.btn-large.waves-effect.waves-light.teal{ href: new_enrollment_path(course_id: @course.id) }
+            %i.material-icons.left person add
+            Join Course
+        - elsif current_user.nil?
+          %a.btn-large.waves-effect.waves-light.teal{ href: new_user_registration_path }
+            %i.material-icons.left school
+            Join Mycademy
+        - elsif @enrollment.leader?
+          %a.btn-large.waves-effect.waves-light.teal#enrollment{ href: enrollments_path(course_id: @course.id) }
+            %i.material-icons.left list
+            Enrollment
+        - else
+          %a.btn-large.waves-effect.waves-light.teal{ href: '#' }
+            %i.material-icons.left trending up
+            My Progress
+          %a.btn-large.waves-effect.waves-light.teal#enrollment{ href: enrollments_path(course_id: @course.id) }
+            %i.material-icons.left list
+            Enrollment
+
+  - @lessons.each do |lesson|
+    %ul
+      - if user_signed_in? && !@enrollment.nil? && @enrollment.leader?
+        .row
+          .col.s12.center
+            %a#up{ href: course_lesson_path(@course, lesson, lesson_no: "up"), "data-method" => "patch", class: "up" }
+              %i.material-icons expand_less
+            %li= link_to "Lesson #{lesson.lesson_no}: #{lesson.title}", course_lesson_path(@course, lesson)
+            %a#down{ href: course_lesson_path(@course, lesson, lesson_no: "down"), "data-method" => "patch", class: "down" }
+              %i.material-icons expand_more
+      - elsif user_signed_in? && !@enrollment.nil? && @enrollment.learner?
+        %li= link_to "Lesson #{lesson.lesson_no}: #{lesson.title}", course_lesson_path(@course, lesson)
+      - else
+        %li= "Lesson #{lesson.lesson_no}: #{lesson.title}"

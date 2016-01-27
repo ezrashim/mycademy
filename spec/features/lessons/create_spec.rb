@@ -21,7 +21,10 @@ feature 'create a lesson', %{
   scenario 'leader can create a lesson' do
     sign_in_as(leader)
     visit course_path(course)
-    click_link 'Create Lesson'
+
+    expect(page).to have_css '#add-lesson'
+
+    find('#add-lesson').click
 
     fill_in 'Title', with: "froala is awesome!!!"
     fill_in 'froala-editor', with: "let's see how this turns out!!!"
@@ -36,8 +39,8 @@ feature 'create a lesson', %{
     sign_in_as(learner)
     visit course_path(course)
 
-    expect(page).to_not have_content 'Create Lesson'
-    expect(page).to have_content 'View My Progress'
+    expect(page).to_not have_css '#add-lesson'
+    expect(page).to have_content 'My Progress'
   end
 
   scenario 'visitor cannot create a lesson' do

@@ -26,7 +26,7 @@ feature 'reorder a lesson', %{
 
     expect(page).to have_content("Lesson 1: #{lesson_1.title}")
 
-    first(:link, 'down').click
+    first(:css, '#down').click
 
     expect(page).to have_content("#{leader.first_name},
       you want that lesson to be later, eh? Good thinking.")
@@ -36,7 +36,7 @@ feature 'reorder a lesson', %{
   scenario 'nothing happens if the leader tries to move the last lesson down' do
     sign_in_as leader
     visit course_path(course)
-    all('.down').last.click
+    all('#down').last.click
 
     expect(page).to have_content("Lesson 3: #{lesson_3.title}")
   end
@@ -47,7 +47,7 @@ feature 'reorder a lesson', %{
 
     expect(page).to have_content("Lesson 2: #{lesson_2.title}")
 
-    all('.up')[1].click
+    all('#up')[1].click
 
     expect(page).to have_content("#{leader.first_name},
       you want that lesson to be sooner, eh? Wise choice.")
@@ -57,7 +57,7 @@ feature 'reorder a lesson', %{
   scenario 'nothing happens if the leader tries to move the first lesson up' do
     sign_in_as leader
     visit course_path(course)
-    first(:link, 'up').click
+    first(:css, '#up').click
 
     expect(page).to have_content("Lesson 1: #{lesson_1.title}")
   end
