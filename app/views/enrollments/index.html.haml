@@ -26,8 +26,8 @@
           - @enrollments.each do |student|
             - unless student.user == current_user || student.user == @leader
               %tr
-                %td "#{student.user.first_name} #{student.user.last_name}"
-                %td student.email
+                %td #{student.user.first_name} #{student.user.last_name}
+                %td= student.user.email
 .section
   .container
     .row

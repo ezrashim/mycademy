@@ -13,19 +13,19 @@
             = f.label :last_name, 'Last Name'
             %br/
             = f.text_field :last_name, autofocus: true
-          .field.col.s12
+          .input-field.col.s12
             = f.label :email
             %br/
             = f.email_field :email, autofocus: true
           - if devise_mapping.confirmable? && resource.pending_reconfirmation?
             %div
               Currently waiting confirmation for: #{resource.unconfirmed_email}
-          .field.col.s12
+          .input-field.col.s12
             = f.label :password
             %i (leave blank if you don't want to change it)
             %br/
             = f.password_field :password, autocomplete: "off"
-          .field.col.s12
+          .input-field.col.s12
             = f.label :password_confirmation
             %br/
             = f.password_field :password_confirmation, autocomplete: "off"
