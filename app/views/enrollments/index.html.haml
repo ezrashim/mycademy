@@ -11,7 +11,7 @@
           - if @enrollments.present? && current_user == @leader
             %th{ "data-field" => "last_sign_in" } Last Signed In
             %th{ "data-field" => "question_answered" } Questions Answered
-            %th{ "data-field" => "remove"} Edit
+            %th{ "data-field" => "remove" } Edit
       %tbody
         - if @enrollments.present? && current_user == @leader
           - @enrollments.each do |student|
