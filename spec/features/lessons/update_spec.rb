@@ -29,10 +29,10 @@ feature 'update a lesson', %{
     click_link 'Update Lesson'
 
     expect(page).to have_field('Title', with: lesson.title)
-    expect(page).to have_field('froala-editor', with: lesson.content)
+    expect(page).to have_field('Content', with: lesson.content)
 
     fill_in('Title', with: "I changed the lesson title")
-    fill_in('froala-editor', with: "Froala editor rocks!!!!!")
+    fill_in('Content', with: "Froala editor rocks!!!!!")
     click_button('Update Lesson')
 
     expect(page).to have_content("I changed the lesson title")
@@ -54,15 +54,15 @@ feature 'update a lesson', %{
     visit edit_course_lesson_path(course, lesson)
 
     expect(page).to have_field('Title', with: lesson.title)
-    expect(page).to have_field('froala-editor', with: lesson.content)
+    expect(page).to have_field('Content', with: lesson.content)
 
-    fill_in('froala-editor', with: "")
+    fill_in('Content', with: "")
     click_button('Update Lesson')
 
     expect(page).to have_content("Sorry buddy, we couldn't change your lesson.
     Your input is invalid.")
     expect(page).to have_field("Title", with: lesson.title)
-    expect(page).to have_field('froala-editor')
+    expect(page).to have_field('Content')
   end
 
   scenario 'learner cannot update the lesson' do
@@ -73,7 +73,7 @@ feature 'update a lesson', %{
     expect(page).to_not have_button('Update Lesson')
     expect(page).to_not have_content('Update Lesson')
     expect(page).to_not have_field('Title')
-    expect(page).to_not have_field('froala-editor')
+    expect(page).to_not have_field('Content')
     expect(page).to have_content(lesson.title)
     expect(page).to have_content(lesson.content)
 

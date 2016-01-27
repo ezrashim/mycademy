@@ -29,9 +29,9 @@ feature 'update an answer', %{
     visit question_answer_path(question, answer)
     click_link 'Update Answer'
 
-    expect(page).to have_field 'froala-editor'
+    expect(page).to have_field 'Answer'
 
-    fill_in 'froala-editor', with: "this is an update!!!!"
+    fill_in 'Answer', with: "this is an update!!!!"
 
     click_button 'Update Answer'
 

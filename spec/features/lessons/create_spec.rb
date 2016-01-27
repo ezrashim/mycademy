@@ -27,7 +27,7 @@ feature 'create a lesson', %{
     find('#add-lesson').click
 
     fill_in 'Title', with: "froala is awesome!!!"
-    fill_in 'froala-editor', with: "let's see how this turns out!!!"
+    fill_in 'Content', with: "let's see how this turns out!!!"
 
     click_button 'Create Lesson'
 
