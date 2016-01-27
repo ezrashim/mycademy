@@ -9,7 +9,7 @@
 
   .div
     = f.label :answer, "Answer"
-    = f.text_area :answer, id: 'froala-editor'
+    = f.text_area :answer, class: "tinymce", rows: 40, cols: 120
 
   .div
     = f.submit

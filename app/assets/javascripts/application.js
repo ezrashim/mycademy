@@ -13,41 +13,16 @@
 //= require jquery
 //= require jquery_ujs
 //= require bin/materialize
-//= require froala_editor.min.js
-//= require plugins/align.min.js
-//= require plugins/char_counter.min.js
-//= require plugins/code_beautifier.min.js
-//= require plugins/code_view.min.js
-//= require plugins/colors.min.js
-//= require plugins/emoticons.min.js
-//= require plugins/entities.min.js
-//= require plugins/file.min.js
-//= require plugins/font_family.min.js
-//= require plugins/font_size.min.js
-//= require plugins/fullscreen.min.js
-//= require plugins/image.min.js
-//= require plugins/image_manager.min.js
-//= require plugins/inline_style.min.js
-//= require plugins/line_breaker.min.js
-//= require plugins/link.min.js
-//= require plugins/lists.min.js
-//= require plugins/paragraph_format.min.js
-//= require plugins/paragraph_style.min.js
-//= require plugins/quote.min.js
-//= require plugins/save.min.js
-//= require plugins/table.min.js
-//= require plugins/url.min.js
-//= require plugins/video.min.js
+//= require tinymce
+//= require tinymce-jquery
 //= require_tree .
 
 (function($){
   $(function(){
     $('.button-collapse').sideNav();
-    $('#froala-editor').froalaEditor({
-      toolbarInline: false,
-      heightMin: 300,
-      heightMax: 400,
-      toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', '|', 'color', 'emoticons', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', '-', 'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable', '|', 'quote', 'insertHR', 'undo', 'redo', 'clearFormatting', 'selectAll', 'html' ]
+    tinymce.init({
+      selector: '.tinymce',
+      block_formats: 'Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3'
     });
   }); // end of document ready
 })(jQuery); // end of jQuery name space

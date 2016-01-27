@@ -1,6 +1,6 @@
 - if @enrollment.present? && @enrollment.learner? && @answer.enrollment.user == current_user
   %h1= @question.question
-  %fr-view= @answer.answer.html_safe
+  = @answer.answer.html_safe
   %li= link_to 'Update Answer', edit_question_answer_path(@question, @answer)
   %li= link_to 'Remove Answer', question_answer_path(@question, @answer), method: :delete
 - elsif @enrollment.present? && @enrollment.leader?

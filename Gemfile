@@ -15,8 +15,8 @@ gem 'materialize-sass'
 gem 'rails_12factor', group: :production
 gem 'puma'
 gem 'carrierwave'
-gem 'wysiwyg-rails'
 gem 'font-awesome-rails'
+gem 'tinymce-rails'
 # gem 'twilio-ruby', '~> 4.2.1'
 
 group :development do
