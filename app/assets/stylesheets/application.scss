@@ -17,4 +17,5 @@ $link-color: color("teal", "lighten-1") !default;
  *= require plugins/line_breaker.min.css
  *= require plugins/table.min.css
  *= require plugins/video.min.css
+ *= require_self
  */
