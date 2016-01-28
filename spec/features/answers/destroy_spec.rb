@@ -26,7 +26,7 @@ feature 'destroy an answer', %{
   scenario 'learner can delete the answer' do
     sign_in_as learner
     visit question_answer_path(question, answer)
-    click_link 'Remove Answer'
+    find('#delete-answer').click
 
     expect(page).to have_content question.question
     expect(page).to_not have_content answer.answer
@@ -35,7 +35,7 @@ feature 'destroy an answer', %{
   scenario 'leader cannot delete the answer' do
     sign_in_as leader
     visit question_answer_path(question, answer)
-    expect(page).to_not have_link('Remove Answer')
+    expect(page).to_not have_css('#delete-answer')
 
     expect(page).to have_content question.question
     expect(page).to have_content answer.answer

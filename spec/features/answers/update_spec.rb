@@ -27,11 +27,11 @@ feature 'update an answer', %{
   scenario 'learner can update the answer' do
     sign_in_as learner
     visit question_answer_path(question, answer)
-    click_link 'Update Answer'
+    find('#edit-answer').click
 
-    expect(page).to have_field 'froala-editor'
+    expect(page).to have_field 'Answer'
 
-    fill_in 'froala-editor', with: "this is an update!!!!"
+    fill_in 'Answer', with: "this is an update!!!!"
 
     click_button 'Update Answer'
 

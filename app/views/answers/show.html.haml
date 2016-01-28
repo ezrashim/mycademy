@@ -1,10 +1,19 @@
-- if @enrollment.present? && @enrollment.learner? && @answer.enrollment.user == current_user
-  %h1= @question.question
-  %fr-view= @answer.answer.html_safe
-  %li= link_to 'Update Answer', edit_question_answer_path(@question, @answer)
-  %li= link_to 'Remove Answer', question_answer_path(@question, @answer), method: :delete
-- elsif @enrollment.present? && @enrollment.leader?
-  %h1= @question.question
-  %fr-view= @answer.answer.html_safe
-- else
-  = render 'enrollments/passcode'
+.container
+  .row
+    .col.s12
+      - if @enrollment.present? && @enrollment.learner? && @answer.enrollment.user == current_user
+        %h1= @question.question
+        = @answer.answer.html_safe
+        .center
+          %a.btn.waves-effect.waves-light.teal#edit-answer{ href: edit_question_answer_path(@question, @answer) }
+            %i.material-icons mode_edit
+          %a.btn.waves-effect.waves-light.teal#delete-answer{ href: question_answer_path(@question, @answer), "data-method" => "delete" }
+            %i.material-icons remove_circle
+      - elsif @enrollment.present? && @enrollment.leader?
+        %h1= @question.question
+        %fr-view= @answer.answer.html_safe
+      - else
+        = render 'enrollments/passcode'
+      .section
+        .center
+          = render 'lessons/course_overview'

@@ -1,15 +1,17 @@
 = form_for [@question, @answer] do |f|
-  .div
+  .div.hide
     = f.label :enrollment_id
     = f.number_field :enrollment_id, value: @enrollment.id
 
-  .div
+  .div.hide
     = f.label :question_id
     = f.number_field :question_id, value: @question.id
 
   .div
-    = f.label :answer, "Answer"
-    = f.text_area :answer, id: 'froala-editor'
+    = f.label :answer, "Answer", class: "hide"
+    = f.text_area :answer, class: "tinymce", rows: 40, cols: 120
 
-  .div
-    = f.submit
+  .row
+    .col.s12.center
+      .div.a.btn.waves-effect.waves-light.teal
+        = f.submit

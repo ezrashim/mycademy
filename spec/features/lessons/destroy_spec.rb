@@ -24,7 +24,7 @@ feature 'destroy a lesson', %{
 
     expect(page).to have_content lesson.title
     expect(page).to have_content lesson.content
-    click_link 'Delete Lesson'
+    find('#delete-lesson').click
 
     expect(page).to_not have_content lesson.title
     expect(page).to have_content course.title
@@ -39,6 +39,6 @@ feature 'destroy a lesson', %{
 
     expect(page).to have_content lesson.title
     expect(page).to have_content lesson.content
-    expect(page).to_not have_link 'Delete Lesson'
+    expect(page).to_not have_css '#delete-lesson'
   end
 end

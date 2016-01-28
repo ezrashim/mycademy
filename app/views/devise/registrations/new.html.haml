@@ -8,7 +8,7 @@
           .input-field.col.s6
             = f.label :first_name, "First Name"
             %br/
-            = f.text_field :first_name
+            = f.text_field :first_name, autofocus: true
           .input-field.col.s6
             = f.label :last_name, "Last Name"
             %br/
@@ -19,9 +19,6 @@
             = f.email_field :email, autofocus: true
           .input-field.col.s12
             = f.label :password
-            - if @minimum_password_length
-              %em
-                (#{@minimum_password_length} characters minimum)
             %br/
             = f.password_field :password, autocomplete: "off"
           .input-field.col.s12

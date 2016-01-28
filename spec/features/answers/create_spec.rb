@@ -21,11 +21,11 @@ feature 'create an answer for the question', %{
 
   scenario 'learner can create an answer' do
     sign_in_as learner
-    visit question_path(question)
+    visit new_question_answer_path(question)
 
-    expect(page).to have_field 'froala-editor'
+    expect(page).to have_field 'Answer'
 
-    fill_in 'froala-editor', with: "I just hope that our next president governs well, That's all."
+    fill_in 'Answer', with: "I just hope that our next president governs well, That's all."
     click_button 'Create Answer'
 
     expect(page).to have_content "Wow, wayda go #{learner.first_name}! You just submitted your answer!"

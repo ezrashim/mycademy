@@ -25,8 +25,8 @@ feature 'update a question', %{
 
   scenario 'leader can update the question' do
     sign_in_as leader
-    visit question_path(question)
-    click_link('Update Question')
+    visit course_lesson_path(course, lesson)
+    all('.edit-question').first.click
 
     expect(page).to have_field 'Question', with: question.question
 

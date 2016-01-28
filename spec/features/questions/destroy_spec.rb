@@ -25,8 +25,8 @@ feature 'destroy a question', %{
 
   scenario 'leader can delete the question' do
     sign_in_as leader
-    visit question_path(question)
-    click_link('Remove Question')
+    visit course_lesson_path(course, lesson)
+    all('.delete-question').first.click
 
     expect(page).to have_content "We got you. Your question will no longer be asked."
     expect(page).to_not have_content question.question
@@ -34,9 +34,9 @@ feature 'destroy a question', %{
 
   scenario 'learner connot delete the course' do
     sign_in_as learner
-    visit question_path(question)
+    visit course_lesson_path(course, lesson)
 
-    expect(page).to_not have_link('Remove Question')
+    expect(page).to_not have_css('.delete-question')
     expect(page).to have_content question.question
   end
 end

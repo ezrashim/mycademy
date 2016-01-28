@@ -1,6 +1,22 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @question = Question.find(params[:question_id])
+    @lesson = @question.lesson
+    @course = Course.find(@lesson.course.id)
+    @enrollment = Enrollment.find_by(user: current_user, course: @course)
+    @answers = Answer.where(question: @question)
+  end
+
+  def new
+    @question = Question.find(params[:question_id])
+    @lesson = @question.lesson
+    @course = Course.find(@lesson.course.id)
+    @enrollment = Enrollment.find_by(user: current_user, course: @course)
+    @answer = Answer.new
+  end
+
   def create
     @question = Question.find(params[:question_id])
     @lesson = @question.lesson
@@ -47,15 +63,15 @@ class AnswersController < ApplicationController
   def destroy
     @question = Question.find(params[:question_id])
     @lesson = @question.lesson
-    # @course = Course.find(@lesson.course.id)
-    # @enrollment = Enrollment.find_by(user: current_user, course: @course)
+    @course = Course.find(@lesson.course.id)
+    @enrollment = Enrollment.find_by(user: current_user, course: @course)
     @answer = Answer.find(params[:id])
     if @answer.destroy
       flash[:notice] = "Your answer has been removed. You must have something extraordinary waiting to be written!"
-      redirect_to question_path(@question, lesson_id: @lesson.id)
+      redirect_to new_question_answer_path(@question, lesson_id: @lesson.id)
     else
       flash.now[:notice] = "Your answer will stay as it is. Why don't you give update a try?"
-      render :show
+      render :new
     end
   end
 

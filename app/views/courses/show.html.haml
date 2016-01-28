@@ -28,8 +28,8 @@
             Enrollment
         - else
           %a.btn-large.waves-effect.waves-light.teal{ href: '#' }
-            %i.material-icons.left trending up
-            My Progress
+            %i.material-icons.left trending_up
+            Progress
           %a.btn-large.waves-effect.waves-light.teal#enrollment{ href: enrollments_path(course_id: @course.id) }
             %i.material-icons.left list
             Enrollment
@@ -45,6 +45,10 @@
             %a#down{ href: course_lesson_path(@course, lesson, lesson_no: "down"), "data-method" => "patch", class: "down" }
               %i.material-icons expand_more
       - elsif user_signed_in? && !@enrollment.nil? && @enrollment.learner?
-        %li= link_to "Lesson #{lesson.lesson_no}: #{lesson.title}", course_lesson_path(@course, lesson)
+        .row
+          .col.s12.center
+            %li= link_to "Lesson #{lesson.lesson_no}: #{lesson.title}", course_lesson_path(@course, lesson)
       - else
-        %li= "Lesson #{lesson.lesson_no}: #{lesson.title}"
+        .row
+          .col.s12.center
+            %li Lesson #{lesson.lesson_no}: #{lesson.title}
