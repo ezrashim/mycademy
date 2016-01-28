@@ -7,10 +7,10 @@
       %thead
         %tr
           %th{ "data-field" => "id" } Name
+          %th{ "data-field" => "questions" } Submissions
           %th{ "data-field" => "email" } Email
           - if @enrollments.present? && current_user == @leader
             %th{ "data-field" => "last_sign_in" } Last Signed In
-            %th{ "data-field" => "question_answered" } Questions Answered
             %th{ "data-field" => "remove" } Edit
       %tbody
         - if @enrollments.present? && current_user == @leader
@@ -18,9 +18,9 @@
             - if student.learner?
               %tr
                 %td= link_to "#{student.user.first_name} #{student.user.last_name}", '#'
+                %td= link_to "#{student.answers.size} / #{@q_count}" , enrollment_path(student, course_id: @course.id)
                 %td= student.user.email
                 %td= student.user.last_sign_in_at.localtime.strftime("%-I:%M %p %Z %-m/%-d/%-Y") unless student.user.last_sign_in_at.nil?
-                %td= link_to '#', '#'
                 %td= link_to 'Remove', enrollment_path(student, course_id: student.course), method: :delete
         - elsif @enrollments.present? && @enrollments.find_by(user: current_user).learner?
           - @enrollments.each do |student|

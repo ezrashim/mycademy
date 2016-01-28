@@ -15,6 +15,13 @@ class AnswersController < ApplicationController
     @course = Course.find(@lesson.course.id)
     @enrollment = Enrollment.find_by(user: current_user, course: @course)
     @answer = Answer.new
+    @answers = @question.answers
+    @answers.each do |answer|
+      if answer.enrollment.user == current_user
+        flash[:notice] = "I see that you already submitted an answer. You're good to go buddy!"
+        redirect_to question_answer_path(@question, answer)
+      end
+    end
   end
 
   def create

@@ -1,0 +1,20 @@
+.container
+  .row
+    .col.s12.center
+      %h1= @course.title
+      %h3= @course.description
+  .row
+    - @lessons.each do |lesson|
+      .row.card-panel
+        .col.s6.left
+          %h6 Lesson #{lesson.lesson_no}: #{lesson.title}
+        .col.s6.right
+          - if lesson.questions.present?
+            - count = lesson.questions.length
+            - lesson.questions.each do |question|
+              - question.answers.each do |answer|
+                - if answer.enrollment.user == @learner
+                  %i.material-icons.teal-text#complete star
+                  - count -= 1
+            - count.times do |icon|
+              %i.material-icons.teal-text#incomplete star_border
