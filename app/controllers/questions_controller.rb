@@ -26,14 +26,6 @@ class QuestionsController < ApplicationController
     @question = Question.new
   end
 
-  def show
-    @question = Question.find(params[:id])
-    @lesson = @question.lesson
-    @course = Course.find(@lesson.course.id)
-    @enrollment = Enrollment.find_by(user: current_user, course: @course)
-    @answer = Answer.new
-  end
-
   def edit
     lesson
     @question = Question.find(params[:id])

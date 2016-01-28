@@ -45,7 +45,7 @@ feature 'learners can view each question question', %{
   end
 
   scenario 'unauthenticated user cannot view the question' do
-    visit question_path(question)
+    visit course_lesson_path(course, lesson)
 
     expect(page).to have_content 'Log in'
   end

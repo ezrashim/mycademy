@@ -35,7 +35,7 @@ feature 'view answers', %{
     expect(page).to have_content(question.question)
     question.answers.each do |answer|
       expect(page).to have_content(answer.answer)
-      expect(page).to have_content("Submitted by #{answer.enrollment.user.first_name} #{answer.enrollment.user.last_name}" )
+      expect(page).to have_content("Submitted by #{answer.enrollment.user.first_name} #{answer.enrollment.user.last_name}")
     end
   end
 
