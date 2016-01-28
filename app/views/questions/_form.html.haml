@@ -1,13 +1,16 @@
-= form_for @question do |f|
-  .div.input-field
-    = f.label :lesson_id
-    = f.number_field :lesson_id, value: @lesson.id
+.container
+  .row
+    .col.s12
+      = form_for @question do |f|
+        .div.input-field
+          = f.label :lesson_id
+          = f.number_field :lesson_id, value: @lesson.id
 
-  .div.input-field
-    = f.label :question, 'Question'
-    = f.text_field :question
+        .div.input-field
+          = f.label :question, 'Question'
+          = f.text_field :question, autofocus: true
 
-  .div.center
-    %a.btn.waves-effect.waves-light
-      %i.material-icons.left add
-      = f.submit
+        .div.center
+          %a.btn.waves-effect.waves-light
+            %i.material-icons.left add
+            = f.submit

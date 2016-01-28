@@ -11,7 +11,7 @@
             %i.material-icons remove_circle
       - elsif @enrollment.present? && @enrollment.leader?
         %h1= @question.question
-        %fr-view= @answer.answer.html_safe
+        %div= @answer.answer.html_safe
       - else
         = render 'enrollments/passcode'
       .section

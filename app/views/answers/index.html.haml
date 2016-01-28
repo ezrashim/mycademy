@@ -7,7 +7,8 @@
           - @answers.each do |answer|
             %li.card-panel.hoverable
               = answer.answer.html_safe
-              = "Submitted by #{answer.enrollment.user.first_name} #{answer.enrollment.user.last_name}"
+              %a{ href: enrollment_path(answer.enrollment, course_id: @course.id) }
+                #{answer.enrollment.user.first_name} #{answer.enrollment.user.last_name}
       - else
         %ul
           %h3 I think you are a bit lost, buddy. You need to be the leader to view this page. Time to go back to where you belong.
