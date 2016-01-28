@@ -1,8 +1,8 @@
 .container
   .row
     .col.s12.center
-      %h1= @question.question
       - if user_signed_in? && !@enrollment.nil? && @enrollment.leader?
+        %h1= @question.question
         %ul
           - @answers.each do |answer|
             %li.card-panel.hoverable
@@ -10,6 +10,6 @@
               = "Submitted by #{answer.enrollment.user.first_name} #{answer.enrollment.user.last_name}"
       - else
         %ul
-          %li I think you are a bit lost, buddy. You need to be the leader to view this page. Time to go back to where you belong.
+          %h3 I think you are a bit lost, buddy. You need to be the leader to view this page. Time to go back to where you belong.
       .row
-        = render 'lessons/course_overview'
+        = render 'questions/lesson_overview'
