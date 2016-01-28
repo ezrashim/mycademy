@@ -22,7 +22,7 @@ class LessonsController < ApplicationController
     else
       flash.now[:error] = "Ooops...Something is not right."
       flash.now[:notice] = @course.errors.full_messages
-      render 'new'
+      render 'edit'
     end
   end
 
@@ -116,7 +116,8 @@ class LessonsController < ApplicationController
     params.require(:lesson).permit(
       :title,
       :content,
-      :lesson_no
+      :lesson_no,
+      :course_id
     ).merge(course: Course.find(params[:course_id]))
   end
 end
