@@ -32,6 +32,6 @@ feature 'learners can view the progress of the enrolled class', %{
     expect(page).to have_content course.description
     expect(page).to have_content lesson.title
     expect(page).to have_content lesson.lesson_no
-    expect(page).to have_css '#complete' 
+    expect(page).to have_css '#complete'
   end
 end
