@@ -23,7 +23,7 @@
                     .col.s10.valign
                       %li= link_to question.question, question_answers_path(question)
                     .col.s1.valign
-                      %a.btn-floating.waves-effect.waves-light.teal.delete-question{ href: question_path(question, lesson_id: @lesson.id), "data-method" => "delete"}
+                      %a.btn-floating.waves-effect.waves-light.teal.delete-question{ href: question_path(question, lesson_id: @lesson.id), "data-method" => "delete" }
                         %i.material-icons remove
                     .col.s1.valign
                       %a.btn-floating.waves-effect.waves-light.teal.edit-question{ href: edit_question_path(question, lesson_id: @lesson.id) }
