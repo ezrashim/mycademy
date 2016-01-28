@@ -3,9 +3,12 @@ class LessonsController < ApplicationController
 
   def show
     @lesson = Lesson.find(params[:id])
-    @course = Course.find(params[:course_id])
+    @course = @lesson.course
     @enrollment = Enrollment.find_by(user: current_user, course: @course)
     @questions =  Question.where(lesson: @lesson)
+    if @enrollment.nil?
+      redirect_to new_enrollment_path(course_id: @course.id)
+    end
   end
 
   def create
@@ -33,6 +36,13 @@ class LessonsController < ApplicationController
   def destroy
     @course = Course.find(params[:course_id])
     @lesson = Lesson.find(params[:id])
+    @questions = Question.where(lesson: @lesson)
+    if @questions.present?
+      @questions.each do |question|
+        question.answers.destroy_all
+      end
+      @questions.destroy_all
+    end
     if @lesson.destroy
       flash[:notice] = "Buddy, I hope you have a better lesson in mind,
       cuz you just deleted one heck of a lesson."

@@ -27,7 +27,7 @@ feature 'update an answer', %{
   scenario 'learner can update the answer' do
     sign_in_as learner
     visit question_answer_path(question, answer)
-    click_link 'Update Answer'
+    find('#edit-answer').click
 
     expect(page).to have_field 'Answer'
 

@@ -41,13 +41,14 @@ class QuestionsController < ApplicationController
 
   def destroy
     lesson
+    @course = lesson.course
     @question = Question.find(params[:id])
     if @question.destroy
       flash[:notice] = "We got you. Your question will no longer be asked."
-      redirect_to questions_path(lesson_id: @lesson.id)
+      redirect_to course_lesson_path(@course, lesson)
     else
       flash.now[:notice] = "Nice try. You won't get rid of this awesome question."
-      render :index
+      render 'lessons/show'
     end
   end
 
@@ -55,10 +56,10 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     if @question.update(question_params)
       flash[:notice] = "Ask different! :p"
-      redirect_to question_path(@question)
+      redirect_to course_lesson_path(@question.lesson.course, @question.lesson)
     else
       flash.now[:notice] = "I say just keep it as is...or you can try to change again."
-      render :show
+      render 'lessons/show'
     end
   end
 

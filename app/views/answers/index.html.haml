@@ -1,12 +1,13 @@
-%h1= @question.question
-
-- if user_signed_in? && !@enrollment.nil? && @enrollment.leader?
-  %ul
-    - @answers.each do |answer|
-      %li= answer.answer
-      %li Submitted by #{answer.enrollment.user.first_name} #{answer.enrollment.user.last_name}
-- else
-  %ul
-    %li I think you are a bit lost, buddy. You need to be the leader to view this page. Time to go back to where you belong.
-
-= render 'lessons/course_overview'
+.container
+  .row
+    .col.s12.center
+      %h1= @question.question
+      - if user_signed_in? && !@enrollment.nil? && @enrollment.leader?
+        %ul
+          - @answers.each do |answer|
+            %li= answer.answer
+            %li Submitted by #{answer.enrollment.user.first_name} #{answer.enrollment.user.last_name}
+      - else
+        %ul
+          %li I think you are a bit lost, buddy. You need to be the leader to view this page. Time to go back to where you belong.
+      = render 'lessons/course_overview'

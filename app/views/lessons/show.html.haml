@@ -4,7 +4,7 @@
       %h1.center= @lesson.title
       = @lesson.content.html_safe
 
-      - if user_signed_in? && !@enrollment.nil? && @enrollment.leader?
+      - if @enrollment.leader?
         .row.center
           %a.btn-floating.waves-effect.waves-light.teal#delete-lesson{ href: course_lesson_path(@course, @lesson), "data-method" => "delete" }
             %i.material-icons remove
@@ -19,16 +19,19 @@
             - @questions.each do |question|
               %ul.card-panel.hoverable
                 .row.valign-wrapper
-                  - if user_signed_in? && !@enrollment.nil? && @enrollment.leader?
+                  - if @enrollment.leader?
                     .col.s10.valign
                       %li= link_to question.question, question_answers_path(question)
-                    .col.s2.valign
-                      %a.btn-floating.waves-effect.waves-light.teal#delete-questions{ href: question_path(question), "data-method" => "delete"}
+                    .col.s1.valign
+                      %a.btn-floating.waves-effect.waves-light.teal.delete-question{ href: question_path(question, lesson_id: @lesson.id), "data-method" => "delete"}
                         %i.material-icons remove
-                  - elsif user_signed_in? && !@enrollment.nil? && @enrollment.learner?
-                    .col.s10.valign
+                    .col.s1.valign
+                      %a.btn-floating.waves-effect.waves-light.teal.edit-question{ href: edit_question_path(question, lesson_id: @lesson.id) }
+                        %i.material-icons edit
+                  - elsif @enrollment.learner?
+                    .col.s12.valign
                       %li= link_to question.question, new_question_answer_path(question)
-            - if user_signed_in? && !@enrollment.nil? && @enrollment.leader?
+            - if @enrollment.leader?
               %a.btn-large.col.s12.waves-effect.waves-light.teal#add-question{ href: new_question_path(lesson_id: @lesson.id) }
                 %i.material-icons add
 

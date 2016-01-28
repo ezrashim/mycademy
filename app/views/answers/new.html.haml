@@ -1,0 +1,7 @@
+.container
+  .row 
+    .col.s12
+      - if user_signed_in? && @enrollment.present?
+        %h3= @question.question
+      - if @enrollment.present? && @enrollment.learner?
+        = render 'answers/form'

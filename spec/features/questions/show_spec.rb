@@ -25,21 +25,21 @@ feature 'learners can view each question question', %{
 
   scenario 'learner can view the question' do
     sign_in_as(learner)
-    visit question_path(question)
+    visit course_lesson_path(course, lesson)
 
     expect(page).to have_content question.question
   end
 
   scenario 'leader can view the question' do
     sign_in_as(leader)
-    visit question_path(question)
+    visit course_lesson_path(course, lesson)
 
     expect(page).to have_content question.question
   end
 
   scenario 'user cannot view the question' do
     sign_in_as(user)
-    visit question_path(question)
+    visit course_lesson_path(course, lesson)
 
     expect(page).to have_content 'Passcode'
   end

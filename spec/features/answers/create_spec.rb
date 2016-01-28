@@ -21,7 +21,7 @@ feature 'create an answer for the question', %{
 
   scenario 'learner can create an answer' do
     sign_in_as learner
-    visit question_path(question)
+    visit new_question_answer_path(question)
 
     expect(page).to have_field 'Answer'
 
