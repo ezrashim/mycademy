@@ -12,6 +12,6 @@ Rails.application.routes.draw do
   resources :enrollments, only: [:new, :create, :index, :destroy]
 
   resources :questions do
-    resources :answers, only: [:create, :new, :show, :edit, :update, :destroy]
+    resources :answers, only: [:create, :new, :show, :edit, :update, :destroy, :index]
   end
 end

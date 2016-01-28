@@ -9,14 +9,15 @@ class QuestionsController < ApplicationController
 
   def create
     @lesson = Lesson.find(params[:question][:lesson_id])
+    @course = Course.find(@lesson.course.id)
     @question = Question.new(question_params)
     @questions = Question.where(lesson: @lesson)
     if @question.save
       flash[:notice] = "You just created a new question!"
-      redirect_to questions_path(lesson_id: @lesson.id)
+      redirect_to course_lesson_path(@course, @lesson)
     else
       flash[:notice] = "Question couldn't be posted."
-      render 'new'
+      render 'lessons/show'
     end
   end
 
