@@ -3,7 +3,7 @@
     .col.s12
       - if @enrollment.present? && @enrollment.learner? && @answer.enrollment.user == current_user
         %h1= @question.question
-        = @answer.answer.html_safe
+        %div= @answer.answer.html_safe
         .center
           %a.btn.waves-effect.waves-light.teal#edit-answer{ href: edit_question_answer_path(@question, @answer) }
             %i.material-icons mode_edit

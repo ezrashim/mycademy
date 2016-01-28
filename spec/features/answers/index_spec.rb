@@ -49,9 +49,8 @@ feature 'view answers', %{
     sign_in_as learner
     visit question_answers_path(question)
 
-    expect(page).to have_content(question.question)
     expect(page).to have_content("I think you are a bit lost, buddy. You need to be the leader to view this page. Time to go back to where you belong.")
-    expect(page).to have_css('#course-overview')
+    expect(page).to have_css('#question-overview')
   end
 
   scenario 'visitor cannot view any answers' do
@@ -59,6 +58,6 @@ feature 'view answers', %{
     visit question_answers_path(question)
 
     expect(page).to have_content("I think you are a bit lost, buddy. You need to be the leader to view this page. Time to go back to where you belong.")
-    expect(page).to have_css('#course-overview')
+    expect(page).to have_css('#question-overview')
   end
 end
