@@ -19,7 +19,7 @@
               %tr
                 %td= link_to "#{student.user.first_name} #{student.user.last_name}", '#'
                 %td= student.user.email
-                %td= student.user.last_sign_in_at.localtime.strftime("%-I:%M:%S %p %Z %-m/%-d/%-Y") unless student.user.last_sign_in_at.nil?
+                %td= student.user.last_sign_in_at.localtime.strftime("%-I:%M %p %Z %-m/%-d/%-Y") unless student.user.last_sign_in_at.nil?
                 %td= link_to '#', '#'
                 %td= link_to 'Remove', enrollment_path(student, course_id: student.course), method: :delete
         - elsif @enrollments.present? && @enrollments.find_by(user: current_user).learner?
