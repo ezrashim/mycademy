@@ -39,10 +39,10 @@
       - if user_signed_in? && !@enrollment.nil? && @enrollment.leader?
         .row
           .col.s12.center
-            %a#up.hoverable{ href: course_lesson_path(@course, lesson, lesson_no: "up"), "data-method" => "patch", class: "up" }
+            %a.hoverable#up{ href: course_lesson_path(@course, lesson, lesson_no: "up"), "data-method" => "patch", class: "up" }
               %i.material-icons expand_less
             %li.card-panel= link_to "Lesson #{lesson.lesson_no}: #{lesson.title}", course_lesson_path(@course, lesson)
-            %a#down.hoverable.highlight{ href: course_lesson_path(@course, lesson, lesson_no: "down"), "data-method" => "patch", class: "down" }
+            %a.hoverable.highlight#down{ href: course_lesson_path(@course, lesson, lesson_no: "down"), "data-method" => "patch", class: "down" }
               %i.material-icons expand_more
       - elsif user_signed_in? && !@enrollment.nil? && @enrollment.learner?
         .row
