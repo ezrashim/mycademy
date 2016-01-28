@@ -23,7 +23,7 @@ feature 'create a question', %{
   scenario 'leader can create a lesson' do
     sign_in_as(leader)
     visit course_lesson_path(course, lesson)
-    click_link 'Create Question'
+    find('#add-question').click
 
     fill_in 'Question', with: "Who should become the America's next president?"
 
@@ -36,7 +36,7 @@ feature 'create a question', %{
     sign_in_as(learner)
     visit course_lesson_path(course, lesson)
 
-    expect(page).to_not have_content 'Create Question'
+    expect(page).to_not have_css '#add-question'
     expect(page).to have_link question.question
   end
 

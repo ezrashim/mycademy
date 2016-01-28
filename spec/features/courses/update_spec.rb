@@ -54,7 +54,7 @@ feature 'update a course', %{
     sign_in_as(learner)
     click_link(course.title)
 
-    expect(page).to have_content('My Progress')
+    expect(page).to have_content('Progress')
     expect(page).to_not have_content('Update Course')
   end
 
@@ -64,6 +64,6 @@ feature 'update a course', %{
 
     expect(page).to have_content('Join Mycademy')
     expect(page).to_not have_content('Update Course')
-    expect(page).to_not have_content('My Progress')
+    expect(page).to_not have_content('Progress')
   end
 end

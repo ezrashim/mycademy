@@ -26,7 +26,7 @@ feature 'update a lesson', %{
     lesson = course.lessons.first
     sign_in_as(leader)
     visit course_lesson_path(course, lesson)
-    click_link 'Update Lesson'
+    find('#edit-lesson').click
 
     expect(page).to have_field('Title', with: lesson.title)
     expect(page).to have_field('Content', with: lesson.content)
@@ -40,7 +40,7 @@ feature 'update a lesson', %{
     expect(page).to have_content("#{leader.first_name},
     did you just make your lesson even better? Sweet!")
 
-    click_link('Course Overview')
+    find('#course-overview').click
 
     expect(page).to have_content(course.title)
     expect(page).to have_content(course.description)
@@ -71,7 +71,6 @@ feature 'update a lesson', %{
     visit edit_course_lesson_path(course, lesson)
 
     expect(page).to_not have_button('Update Lesson')
-    expect(page).to_not have_content('Update Lesson')
     expect(page).to_not have_field('Title')
     expect(page).to_not have_field('Content')
     expect(page).to have_content(lesson.title)
@@ -79,7 +78,7 @@ feature 'update a lesson', %{
 
     visit course_lesson_path(course, lesson)
 
-    expect(page).to_not have_link('Update Lesson')
+    expect(page).to_not have_css('#edit-lesson')
     expect(page).to have_content(lesson.title)
     expect(page).to have_content(lesson.content)
   end

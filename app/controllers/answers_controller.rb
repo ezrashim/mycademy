@@ -2,6 +2,11 @@ class AnswersController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @question = Question.find(params[:question_id])
+    @lesson = @question.lesson
+    @course = Course.find(@lesson.course.id)
+    @enrollment = Enrollment.find_by(user: current_user, course: @course)
+    @answers = Answer.where(question: @question)
   end
 
   def create

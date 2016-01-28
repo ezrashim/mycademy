@@ -25,6 +25,9 @@
                     .col.s2.valign
                       %a.btn-floating.waves-effect.waves-light.teal#delete-questions{ href: question_path(question), "data-method" => "delete"}
                         %i.material-icons remove
+                  - elsif user_signed_in? && !@enrollment.nil? && @enrollment.learner?
+                    .col.s10.valign
+                      %li= link_to question.question, new_question_answer_path(question)
             - if user_signed_in? && !@enrollment.nil? && @enrollment.leader?
               %a.btn-large.col.s12.waves-effect.waves-light.teal#add-question{ href: new_question_path(lesson_id: @lesson.id) }
                 %i.material-icons add

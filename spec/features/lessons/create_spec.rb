@@ -40,7 +40,7 @@ feature 'create a lesson', %{
     visit course_path(course)
 
     expect(page).to_not have_css '#add-lesson'
-    expect(page).to have_content 'My Progress'
+    expect(page).to have_content 'Progress'
   end
 
   scenario 'visitor cannot create a lesson' do
