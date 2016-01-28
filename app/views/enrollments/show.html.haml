@@ -3,6 +3,9 @@
     .col.s12.center
       %h1= @course.title
       %h3= @course.description
+      %%br
+      %h5 #{@learner.first_name} #{@learner.last_name}
+      %%br
   .row
     - @lessons.each do |lesson|
       .row.card-panel
@@ -14,7 +17,11 @@
             - lesson.questions.each do |question|
               - question.answers.each do |answer|
                 - if answer.enrollment.user == @learner
-                  %i.material-icons.teal-text#complete star
+                  %a.waves-light{ href: question_answer_path(question, answer) }
+                    %i.material-icons.teal-text#complete star
                   - count -= 1
             - count.times do |icon|
               %i.material-icons.teal-text#incomplete star_border
+  .row
+    .col.s12.center
+      = render 'lessons/course_overview'
