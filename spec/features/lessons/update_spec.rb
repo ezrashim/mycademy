@@ -44,7 +44,7 @@ feature 'update a lesson', %{
 
     expect(page).to have_content(course.title)
     expect(page).to have_content(course.description)
-    expect(page).to have_content("Lesson #{lesson.lesson_no}:
+    expect(page).to have_content("#{lesson.lesson_no}.
     I changed the lesson title")
   end
 

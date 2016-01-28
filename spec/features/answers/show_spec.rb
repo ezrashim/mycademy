@@ -48,4 +48,13 @@ feature 'learners and leaders can view answers for each question', %{
     expect(page).to_not have_content answer.answer
     expect(page).to_not have_content question.question
   end
+
+  scenario 'learner who submitted an answer views the answer' do
+    sign_in_as(learner)
+    visit new_question_answer_path(question)
+
+    expect(page).to have_content "I see that you already submitted an answer. You're good to go buddy!"
+    expect(page).to have_content(question.question)
+    expect(page).to have_content(answer.answer)
+  end
 end

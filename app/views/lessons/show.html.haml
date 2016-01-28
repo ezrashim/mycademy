@@ -29,8 +29,17 @@
                       %a.btn-floating.waves-effect.waves-light.teal.edit-question{ href: edit_question_path(question, lesson_id: @lesson.id) }
                         %i.material-icons edit
                   - elsif @enrollment.learner?
-                    .col.s12.valign
-                      %li= link_to question.question, new_question_answer_path(question)
+                    - user_answer = question.answers.find_by(enrollment: @enrollment)
+                    - if user_answer.present? && user_answer.enrollment.user == current_user
+                      .col.s10.valign
+                        %li= link_to question.question, new_question_answer_path(question)
+                      .col.s2.valign
+                        %i.material-icons.teal-text check_box
+                    - else
+                      .col.s10.valign
+                        %li= link_to question.question, new_question_answer_path(question)
+                      .col.s2.valign
+                        %i.material-icons.teal-text check_box_outline_blank
             - if @enrollment.leader?
               %a.btn-large.col.s12.waves-effect.waves-light.teal#add-question{ href: new_question_path(lesson_id: @lesson.id) }
                 %i.material-icons add

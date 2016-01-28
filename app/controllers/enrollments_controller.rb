@@ -1,6 +1,13 @@
 class EnrollmentsController < ApplicationController
   before_action :authenticate_user!
 
+  def show
+    @course = Course.find(params[:course_id])
+    @lessons = @course.lessons
+    @enrollment = Enrollment.find(params[:id])
+    @learner = @enrollment.user
+  end
+
   def new
     @course = Course.find(params[:course_id])
     @enrollment = Enrollment.new
@@ -23,6 +30,12 @@ class EnrollmentsController < ApplicationController
     @course = Course.find(params[:course_id])
     @enrollments = Enrollment.where(course: @course)
     @leader = @enrollments.find_by(role: 'leader').user
+    @lessons = @course.lessons
+    q_count = 0
+    @lessons.each do |lesson|
+      q_count += lesson.questions.size
+    end
+    @q_count = q_count
   end
 
   def destroy
