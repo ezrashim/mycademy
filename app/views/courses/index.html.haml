@@ -5,26 +5,38 @@
         %%br
           %h2.center.blue-grey-text.text-darken-3 Welcome to Mycademy.
           %h5.center.blue-grey-text.text-darken-3 Design and lead your own curriculum.
-        %%br
-      .section
+  %%br
+  .section.center
+    - if !user_signed_in?
+      = render 'join_mycademy'
+    - else
+      = render 'lead_course'
+  %%br
+  .container
+    .row
+      .col.s12
+        %form{ "accept-charset" => "UTF-8", :action => courses_path }
+          .input-field
+            %input#search{ :required => "", :name => "q", :type => "search" }
+              %label.center{ :for => "search" }
+                %i.material-icons.left search
+                Search Course
+              %i.material-icons close
+
+    .section.center
+      - if @courses.present?
+        = render 'courses'
+      - else
         .row
           .col.s12.m3.center
-            %i.large.material-icons.orange-text perm_identity
-            %h5.orange-text Create Account
+            %i.large.material-icons.teal-text perm_identity
+            %h5.teal-text Create Account
           .col.s12.m3.center
-            %i.large.material-icons.orange-text note_add
-            %h5.orange-text Design Lessons
+            %i.large.material-icons.teal-text note_add
+            %h5.teal-text Design Lessons
           .col.s12.m3.center
-            %i.large.material-icons.orange-text supervisor_account
-            %h5.orange-text Invite Learners
+            %i.large.material-icons.teal-text supervisor_account
+            %h5.teal-text Invite Learners
           .col.s12.m3.center
-            %i.large.material-icons.orange-text loyalty
-            %h5.orange-text Encourage Others
-        %%br
-      .section.center
-        - if !user_signed_in?
-          = render 'join_mycademy'
-        - else
-          = render 'lead_course'
-      .section
-        = render 'courses'
+            %i.large.material-icons.teal-text loyalty
+            %h5.teal-text Encourage Others

@@ -2,8 +2,8 @@
   .col.s12
     %div
       -# = image_tag()
-    %h5.center
+  .row
+    %h5.col.s12
       %a{ href: course_path(course) }
-        %i.material-icons subject
         = course.title
-    %p.light.center= course.description
+    %p.light.col.s12= course.description

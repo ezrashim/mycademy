@@ -15,12 +15,3 @@
         %li= link_to 'Sign Out', destroy_user_session_path, method: :delete
       - else
         %li= link_to 'Sign In', new_user_session_path
-
-    .container
-      .row
-        %form
-          .input-field
-            %input#search{:required => "", :type => "search"}
-              %label{:for => "search"}
-                %i.material-icons search
-              %i.material-icons close

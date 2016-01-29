@@ -17,6 +17,7 @@ gem 'puma'
 gem 'carrierwave'
 gem 'font-awesome-rails'
 gem 'tinymce-rails'
+gem 'pg_search'
 # gem 'twilio-ruby', '~> 4.2.1'
 
 group :development do
