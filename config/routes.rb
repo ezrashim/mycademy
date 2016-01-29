@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
 
-  root 'courses#index'
+  root 'courses#landing'
 
   resources :users, only: [:show]
 
@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   resources :questions, only: [:index, :create, :new, :edit, :destroy, :update] do
     resources :answers
   end
+
+  get "/landing" => "courses#landing"
 end

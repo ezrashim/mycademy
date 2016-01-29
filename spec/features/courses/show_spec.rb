@@ -30,7 +30,7 @@ feature 'authenticated users can view course details', %{
   end
 
   scenario 'visitors cannot join course on show page' do
-    visit root_path
+    visit courses_path
     click_link(course.title)
 
     expect(page).to have_content(course.title)

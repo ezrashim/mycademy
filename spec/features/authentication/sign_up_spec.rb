@@ -13,7 +13,7 @@ feature 'sign up', %{
   # * I register my account and am authenticated.
 
   scenario 'specifying valid and required information' do
-    visit root_path
+    visit courses_path
     click_link 'Join Mycademy'
     fill_in('First Name', with: 'John')
     fill_in('Last Name', with: 'Doe')
@@ -27,7 +27,7 @@ feature 'sign up', %{
   end
 
   scenario 'required information is not supplied' do
-    visit root_path
+    visit courses_path
     click_link 'Join Mycademy'
     click_button 'Sign Up'
 
@@ -36,7 +36,7 @@ feature 'sign up', %{
   end
 
   scenario 'password confirmation does not match confirmation' do
-    visit root_path
+    visit courses_path
     click_link 'Join Mycademy'
 
     fill_in 'Password', with: '123Seekrit'

@@ -19,14 +19,14 @@ feature 'view lessons', %{
   let!(:learner_enrollment) { create :enrollment, role: 'learner', user: learner, course: course }
 
   scenario 'visitors can view links to lessons' do
-    visit root_path
+    visit courses_path
     click_link(course.title)
 
     expect(page).to have_content(course.lessons.first.title)
   end
 
   scenario 'visitor can click links and lead to join page' do
-    visit root_path
+    visit courses_path
     click_link(course.title)
     expect(page).to have_content course.lessons.first.title
 

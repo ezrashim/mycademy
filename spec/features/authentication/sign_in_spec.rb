@@ -46,7 +46,7 @@ feature 'sign in', %{
 
   scenario 'an already authenticated user cannot re-sign in' do
     user = create(:user)
-    visit root_path
+    visit courses_path
     sign_in_as(user)
 
     expect(page).to_not have_content('Sign In')

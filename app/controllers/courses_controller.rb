@@ -1,6 +1,9 @@
 class CoursesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
+  def landing
+  end
+
   def index
     @courses = Course.all
   end
@@ -48,7 +51,7 @@ class CoursesController < ApplicationController
     @enrollments = Enrollment.where(course: course)
     if @lessons.destroy_all && @enrollments.destroy_all && @course.destroy
       flash[:notice] = "Hey buddy, you just deleted your own course!"
-      redirect_to root_path
+      redirect_to courses_path
     else
       flash[:notice] = "Sorry, #{current_user.first_name}. We couldn't delete #{course.title}."
       render :show

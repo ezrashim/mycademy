@@ -1,7 +1,7 @@
 %nav
   .nav-wrapper
-    %a.brand-logo{:href => root_path} Mycademy
-    %a.button-collapse{"data-activates" => "mobile-demo", :href => "#"}
+    %a.brand-logo{ :href => courses_path } Mycademy
+    %a.button-collapse{ "data-activates" => "mobile-demo", :href => "#" }
       %i.material-icons menu
     %ul.right.hide-on-med-and-down
       - if user_signed_in?

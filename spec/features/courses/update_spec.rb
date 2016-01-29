@@ -59,7 +59,7 @@ feature 'update a course', %{
   end
 
   scenario 'visitor cannot update the course' do
-    visit root_path
+    visit courses_path
     click_link(course.title)
 
     expect(page).to have_content('Join Mycademy')

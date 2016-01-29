@@ -20,7 +20,7 @@ feature 'sign out', %{
   end
 
   scenario 'unauthenticated user attempts to sign out' do
-    visit root_path
+    visit courses_path
 
     expect(page).to_not have_content("Sign Out")
   end
