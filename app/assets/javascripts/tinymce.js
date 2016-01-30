@@ -1,5 +1,8 @@
 (function($){
   $(function(){
+    $('.collapsible').collapsible({
+      accordion: false
+    });
     $('.button-collapse').sideNav();
     tinymce.init({
       selector: '.tinymce',
