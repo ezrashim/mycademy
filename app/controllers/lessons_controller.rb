@@ -71,26 +71,23 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
     @enrollment = Enrollment.find_by(user: current_user, course: @course)
 
-    if params[:lesson_no].present? && params[:lesson_no] == "down"
-      @next_lesson = Lesson.find_by(lesson_no: @lesson.lesson_no + 1)
+    if params[:direction].present? && params[:direction] == "down"
+      @next_lesson = Lesson.find_by(course: @course, lesson_no: @lesson.lesson_no + 1)
       if @next_lesson.present?
-        if @lesson.increment(:lesson_no).lesson_no != @next_lesson.increment(:lesson_no, -1).lesson_no
-          @next_lesson.save
-          @lesson.save
-          flash[:notice] = "#{current_user.first_name},
-          you want that lesson to be later, eh? Good thinking."
-          redirect_to course_path(@course)
-        end
+        @lesson.increment!(:lesson_no)
+        @next_lesson.increment(:lesson_no, -1)
+        flash[:notice] = "#{current_user.first_name},
+        you want that lesson to be later, eh? Good thinking."
+        redirect_to course_path(@course)
       else
         @lessons = Lesson.where(course_id: @course).sort_by { |a| a.lesson_no }
         render 'courses/show'
       end
-    elsif params[:lesson_no].present? && params[:lesson_no] == "up"
-      @previous_lesson = Lesson.find_by(lesson_no: @lesson.lesson_no - 1)
+    elsif params[:direction].present? && params[:direction] == "up"
+      @previous_lesson = Lesson.find_by(course: @course, lesson_no: @lesson.lesson_no - 1)
       if @previous_lesson.present?
-        if @previous_lesson.increment(:lesson_no).lesson_no != @lesson.increment(:lesson_no, -1)
-          @previous_lesson.save
-          @lesson.save
+        if @previous_lesson.increment!(:lesson_no)
+          @lesson.increment!(:lesson_no, -1)
           flash[:notice] = "#{current_user.first_name},
           you want that lesson to be sooner, eh? Wise choice."
           redirect_to course_path(@course)
