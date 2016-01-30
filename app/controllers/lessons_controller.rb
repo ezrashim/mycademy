@@ -75,7 +75,7 @@ class LessonsController < ApplicationController
       @next_lesson = Lesson.find_by(course: @course, lesson_no: @lesson.lesson_no + 1)
       if @next_lesson.present?
         @lesson.increment!(:lesson_no)
-        @next_lesson.increment(:lesson_no, -1)
+        @next_lesson.increment!(:lesson_no, -1)
         flash[:notice] = "#{current_user.first_name},
         you want that lesson to be later, eh? Good thinking."
         redirect_to course_path(@course)
