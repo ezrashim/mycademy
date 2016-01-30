@@ -34,13 +34,13 @@
   - @lessons.each do |lesson|
     %ul
       - if user_signed_in? && !@enrollment.nil? && @enrollment.leader?
-        .row
+        .row{class: "lesson-#{lesson.id} num-#{lesson.lesson_no}"}
           .col.s12.center
-            %a.hoverable#up{ href: course_lesson_path(@course, lesson, lesson_no: "up"), "data-method" => "patch", class: "up" }
-              %i.material-icons expand_less
+            %a.up{ href: course_lesson_path(@course, lesson, lesson_no: "up"), "data-method" => "patch", class: "up" }
+              %i.material-icons.arrow.arrow-up expand_less
             %h5.card-panel.hoverable= link_to "#{lesson.lesson_no}. #{lesson.title}", course_lesson_path(@course, lesson)
-            %a.hoverable#down{ href: course_lesson_path(@course, lesson, lesson_no: "down"), "data-method" => "patch", class: "down" }
-              %i.material-icons expand_more
+            %a.down{ href: course_lesson_path(@course, lesson, lesson_no: "down"), "data-method" => "patch", class: "down" }
+              %i.material-icons.arrow.arrow-down expand_more
       - elsif user_signed_in? && !@enrollment.nil? && @enrollment.learner?
         .row
           .col.s12.center

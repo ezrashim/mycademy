@@ -12,25 +12,17 @@ feature 'view all courses', %{
     let!(:user) { create(:user) }
     let!(:courses) { create_list(:course, 10) }
 
-  scenario "visitor views courses on index page" do
+  scenario "visitor views join mycademy" do
     visit root_path
 
-    courses.each do |course|
-      expect(page).to have_content(course.title)
-      expect(page).to have_content(course.description)
-    end
-
     expect(page).to have_link('Join Mycademy')
+    expect(page).to have_content('Search Course')
   end
 
   scenario "authenticated user views courses on index page" do
     sign_in_as(user)
 
-    courses.each do |course|
-      expect(page).to have_content(course.title)
-      expect(page).to have_content(course.description)
-    end
-
+    expect(page).to have_content('Search Course')
     expect(page).to_not have_link('Join Mycademy')
   end
 end

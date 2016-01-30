@@ -3,7 +3,6 @@ class CoursesController < ApplicationController
 
   def index
     @courses = Course.search_by_title(params[:q])
-
   end
 
   def new

@@ -19,15 +19,13 @@ feature 'view lessons', %{
   let!(:learner_enrollment) { create :enrollment, role: 'learner', user: learner, course: course }
 
   scenario 'visitors can view links to lessons' do
-    visit root_path
-    click_link(course.title)
+    visit course_path(course)
 
     expect(page).to have_content(course.lessons.first.title)
   end
 
   scenario 'visitor can click links and lead to join page' do
-    visit root_path
-    click_link(course.title)
+    visit course_path(course)
     expect(page).to have_content course.lessons.first.title
 
     click_link 'Join Mycademy'
@@ -41,7 +39,7 @@ feature 'view lessons', %{
 
   scenario 'learner can view links to lessons' do
     sign_in_as(learner)
-    click_link(course.title)
+    visit course_path(course)
 
     expect(page).to have_content(course.lessons.first.title)
   end
@@ -49,7 +47,7 @@ feature 'view lessons', %{
   scenario 'learner can click links and lead to lessons page' do
     lesson = course.lessons.first
     sign_in_as(learner)
-    click_link(course.title)
+    visit course_path(course)
     click_link(lesson.title)
 
     expect(page).to have_content lesson.title
@@ -59,14 +57,14 @@ feature 'view lessons', %{
   scenario 'user can view lesson titles' do
     lesson = course.lessons.first
     sign_in_as(user)
-    click_link(course.title)
+    visit course_path(course)
 
     expect(page).to have_content(lesson.title)
   end
 
   scenario 'user can click links and flash shows on the page' do
     sign_in_as(user)
-    click_link(course.title)
+    visit course_path(course)
 
     expect(page).to have_content 'Join Course'
   end
@@ -74,7 +72,7 @@ feature 'view lessons', %{
   scenario 'leader can view links to lessons' do
     lesson = course.lessons.first
     sign_in_as(leader)
-    click_link(course.title)
+    visit course_path(course)
 
     expect(page).to have_content(lesson.title)
   end
@@ -82,7 +80,7 @@ feature 'view lessons', %{
   scenario 'leader can click links and can view create and update links to each lesson.' do
     lesson = course.lessons.first
     sign_in_as(leader)
-    click_link(course.title)
+    visit course_path(course)
 
     expect(page).to have_link lesson.title
     expect(page).to have_css '#add-lesson'

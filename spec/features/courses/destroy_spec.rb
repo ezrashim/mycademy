@@ -18,7 +18,7 @@ feature 'destroy a course', %{
 
   scenario "leader can delete the course" do
     sign_in_as(leader)
-    click_link(course.title)
+    visit course_path(course)
     find('#delete-course').click
 
     expect(page).to have_content("Hey buddy, you just deleted your own course!")
@@ -27,7 +27,7 @@ feature 'destroy a course', %{
 
   scenario "learner cannot delete the course" do
     sign_in_as(learner)
-    click_link(course.title)
+    visit course_path(course)
 
     expect(page).to have_content(course.title)
     expect(page).to have_content(course.description)
