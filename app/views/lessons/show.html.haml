@@ -1,50 +1,46 @@
 .container
-  .row
-    .col.s12
-      %h1.center= @lesson.title
-      = @lesson.content.html_safe
-
+  %ul.collapsible{ "data-collapsible" => "accordion" }
+    %li
+      .collapsible-header
+        %h1 #{@lesson.lesson_no}. #{@lesson.title}
+        = @lesson.content.html_safe
       - if @enrollment.leader?
-        .row.center
-          %a.btn-floating.waves-effect.waves-light.teal#delete-lesson{ href: course_lesson_path(@course, @lesson), "data-method" => "delete" }
-            %i.material-icons remove
-          %a.btn-floating.waves-effect.waves-light.teal#edit-lesson{ href: edit_course_lesson_path(@course, @lesson) }
-            %i.material-icons mode_edit
-
+        .collapsible-body
+          .row
+            .col.s12.center
+              %%br
+              %a.btn.waves-effect.waves-light.blue-grey.darken-3#edit-lesson{ href: edit_course_lesson_path(@course, @lesson) }
+                %i.material-icons mode_edit
+              %a.btn.waves-effect.waves-light.red#delete-lesson{ href: course_lesson_path(@course, @lesson), "data-method" => "delete" }
+                %i.material-icons remove
     .section
       .container
         .row.center
           .col.s12
             %h5 Questions
-            - @questions.each do |question|
-              %ul.card-panel.hoverable
-                .row.valign-wrapper
+            %ul.collapsible{ "data-collapsible" => "accordion" }
+              - @questions.each do |question|
+                %li
                   - if @enrollment.leader?
-                    .col.s10.valign
-                      %li= link_to question.question, question_answers_path(question)
-                    .col.s1.valign
-                      %a.btn-floating.waves-effect.waves-light.teal.delete-question{ href: question_path(question, lesson_id: @lesson.id), "data-method" => "delete" }
-                        %i.material-icons remove
-                    .col.s1.valign
-                      %a.btn-floating.waves-effect.waves-light.teal.edit-question{ href: edit_question_path(question, lesson_id: @lesson.id) }
+                    .collapsible-header
+                      = link_to question.question, question_answers_path(question)
+                    .collapsible-body
+                      %a.btn.waves-effect.waves-light.blue-grey.darken-3.edit-question{ href: edit_question_path(question, lesson_id: @lesson.id) }
                         %i.material-icons edit
+                      %a.btn.waves-effect.waves-light.red.delete-question{ href: question_path(question, lesson_id: @lesson.id), "data-method" => "delete" }
+                        %i.material-icons remove
                   - elsif @enrollment.learner?
-                    - user_answer = question.answers.find_by(enrollment: @enrollment)
-                    - if user_answer.present? && user_answer.enrollment.user == current_user
-                      .col.s10.valign
-                        %li= link_to question.question, new_question_answer_path(question)
-                      .col.s2.valign
+                    .collapsible-header
+                      - user_answer = question.answers.find_by(enrollment: @enrollment)
+                      - if user_answer.present? && user_answer.enrollment.user == current_user
+                        = link_to question.question, new_question_answer_path(question)
                         %i.material-icons.teal-text check_box
-                    - else
-                      .col.s10.valign
-                        %li= link_to question.question, new_question_answer_path(question)
-                      .col.s2.valign
+                      - else
+                        = link_to question.question, new_question_answer_path(question)
                         %i.material-icons.teal-text check_box_outline_blank
             - if @enrollment.leader?
-              %a.btn-large.col.s12.waves-effect.waves-light.teal#add-question{ href: new_question_path(lesson_id: @lesson.id) }
-                Add Question
-
-
+              %a.btn-large.col.s12.waves-effect.waves-light.teal.add-question{ href: new_question_path(lesson_id: @lesson.id) }
+                %i.material-icons.teal add
     .section
       .container
         .row.center

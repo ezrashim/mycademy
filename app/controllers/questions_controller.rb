@@ -35,7 +35,9 @@ class QuestionsController < ApplicationController
     lesson
     @course = lesson.course
     @question = Question.find(params[:id])
-    if @question.destroy
+    @answers = @question.answers
+
+    if @answers.destroy_all && @question.destroy
       flash[:notice] = "We got you. Your question will no longer be asked."
       redirect_to course_lesson_path(@course, lesson)
     else

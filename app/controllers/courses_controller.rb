@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @courses = Course.all
+    @courses = Course.search_by_title(params[:q])
   end
 
   def new
@@ -46,6 +46,15 @@ class CoursesController < ApplicationController
     course
     @lessons = course.lessons
     @enrollments = Enrollment.where(course: course)
+
+    @lessons.each do |lesson|
+      questions = lesson.questions
+      questions.each do |question|
+        question.answers.destroy_all
+        questions.destroy_all
+      end
+    end
+    
     if @lessons.destroy_all && @enrollments.destroy_all && @course.destroy
       flash[:notice] = "Hey buddy, you just deleted your own course!"
       redirect_to root_path

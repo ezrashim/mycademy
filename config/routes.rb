@@ -14,4 +14,13 @@ Rails.application.routes.draw do
   resources :questions, only: [:index, :create, :new, :edit, :destroy, :update] do
     resources :answers
   end
+
+  resources :texts, only: [:create]
+
+  namespace :api do
+    namespace :v1 do
+      resources :questions, only: [:destroy]
+      resources :lessons, only: [:update]
+    end
+  end
 end

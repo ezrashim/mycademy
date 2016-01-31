@@ -17,7 +17,9 @@ gem 'puma'
 gem 'carrierwave'
 gem 'font-awesome-rails'
 gem 'tinymce-rails'
-# gem 'twilio-ruby', '~> 4.2.1'
+gem 'pg_search'
+gem 'twilio-ruby', '~> 4.2.1'
+gem 'dotenv-rails', :groups => [:development, :test]
 
 group :development do
   gem 'web-console', '~> 2.0'

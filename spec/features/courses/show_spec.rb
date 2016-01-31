@@ -15,23 +15,17 @@ feature 'authenticated users can view course details', %{
     let!(:course) { create(:course) }
   scenario 'authenticated users can join courses on show page' do
     sign_in_as(user)
+    visit course_path(course)
 
-    click_link(course.title)
     expect(page).to have_content(course.title)
     expect(page).to have_content(course.description)
     expect(page).to have_content('Join Course')
     expect(page).to_not have_content('Join Mycademy')
-    # click_link('Join Course')
-    #
-    # course.lessons.each do |lesson|
-    #   expect(page).to have_content(lesson.title)
-    #   expect(page).to have_content(lesson.body)
-    # end
   end
 
   scenario 'visitors cannot join course on show page' do
     visit root_path
-    click_link(course.title)
+    visit course_path(course)
 
     expect(page).to have_content(course.title)
     expect(page).to have_content(course.description)
