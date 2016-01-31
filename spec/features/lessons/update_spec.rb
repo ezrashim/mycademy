@@ -44,8 +44,7 @@ feature 'update a lesson', %{
 
     expect(page).to have_content(course.title)
     expect(page).to have_content(course.description)
-    expect(page).to have_content("#{lesson.lesson_no}.
-    I changed the lesson title")
+    expect(page).to have_content("I changed the lesson title")
   end
 
   scenario 'leader cannot update the lesson if one of the field is blank' do

@@ -3,7 +3,8 @@
     %div
       -# = image_tag()
   .row
-    %h5.col.s12
-      %a{ href: course_path(course) }
+    %h4.col.s12.center-align
+      %a.center-align{ href: course_path(course) }
+        %i.material-icons.valign-center widgets
         = course.title
-    %p.light.col.s12= course.description
+    %h5.light.col12.center-align= course.description

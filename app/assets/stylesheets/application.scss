@@ -13,3 +13,33 @@ $link-color: color("teal", "lighten-1") !default;
 .field.col.s12 {
   margin-bottom: 50;
 }
+
+.background {
+  position: relative;
+  overflow: hidden;
+}
+
+.background h1 {
+  padding-top: 50px;
+  position: relative;
+  z-index: 2;
+}
+
+.background h5 {
+  padding: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.background img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0.6;
+}
+
+.btn-large.join-course {
+  margin: 60px;
+}

@@ -36,7 +36,7 @@ feature 'leaders can view the list of students enrolled in his or her course', %
     sign_in_as leader
     visit course_path(course)
     find('#enrollment').click
-    first(:link, 'Remove').click
+    first(:css, '.delete-enrollment').click
 
     expect(page).to have_content "I'm sorry to hear that you removed
       #{learner_1.first_name} from your class."

@@ -1,42 +1,44 @@
-.container
-  .row
-    .col.s12
-      .section
-        %%br
-          %h2.center.blue-grey-text.text-darken-3 Welcome to Mycademy.
-          %h5.center.blue-grey-text.text-darken-3 Design and lead your own curriculum.
+
+
+.row.background
+  .col.s12
+    %h1.center.blue-grey-text.text-darken-4 Welcome to Mycademy.
+    %br
+    %h5.center.blue-grey-text.text-darken-4 Design and lead your own curriculum.
+    %img{ src: "http://i.imgur.com/rij0PkA.jpg?1" }
   %%br
-  .section.center
+  %%br
+  .section.center.lead-course
     - if !user_signed_in?
       = render 'join_mycademy'
     - else
       = render 'lead_course'
   %%br
-  .container
-    .row
-      .col.s12
-        %form{ "accept-charset" => "UTF-8", :action => courses_path }
-          .input-field
-            %input#search{ :required => "", :name => "q", :type => "search" }
-              %label.center{ :for => "search" }
-                %i.material-icons.left search
-                Search Course
-              %i.material-icons close
+.container
+  .row
+    .col.s12
+      %form{ "accept-charset" => "UTF-8", :action => courses_path }
+        .input-field
+          %input#search{ :required => "", :name => "q", :type => "search" }
+            %label.center{ :for => "search" }
+              %i.material-icons.left search
+              Search Course
+            %i.material-icons close
 
-    .section.center
-      - if @courses.present?
-        = render 'courses'
-      - else
-        .row
-          .col.s12.m3.center
-            %i.large.material-icons.orange-text perm_identity
-            %h5.orange-text Create Account
-          .col.s12.m3.center
-            %i.large.material-icons.orange-text note_add
-            %h5.orange-text Design Lessons
-          .col.s12.m3.center
-            %i.large.material-icons.orange-text supervisor_account
-            %h5.orange-text Invite Learners
-          .col.s12.m3.center
-            %i.large.material-icons.orange-text loyalty
-            %h5.orange-text Encourage Others
+.section.center
+  - if @courses.present?
+    = render 'courses'
+  - else
+    .row
+      .col.s12.m3.center
+        %i.large.material-icons.orange-text lightbulb_outline
+        %h5.orange-text Have an Idea
+      .col.s12.m3.center
+        %i.large.material-icons.orange-text gesture
+        %h5.orange-text Design your Course
+      .col.s12.m3.center
+        %i.large.material-icons.orange-text group_add
+        %h5.orange-text Invite your Friends
+      .col.s12.m3.center
+        %i.large.material-icons.orange-text chat
+        %h5.orange-text Give Feedback
