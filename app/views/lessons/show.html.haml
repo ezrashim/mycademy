@@ -2,7 +2,7 @@
   %ul.collapsible{ "data-collapsible" => "accordion" }
     %li
       .collapsible-header
-        %h1 #{@lesson.lesson_no}. #{@lesson.title}
+        %h1.center #{@lesson.lesson_no}. #{@lesson.title}
         = @lesson.content.html_safe
       - if @enrollment.leader?
         .collapsible-body
