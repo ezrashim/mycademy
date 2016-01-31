@@ -5,4 +5,5 @@
       -# =image_tag "#{@user.profile_photo}", size: "160x160"
       %ul
         %li= @user.email
+        %li #{@user.area_code}-#{@user.first_digits}-#{@user.last_digits}
       %div= link_to 'Update', edit_user_registration_path

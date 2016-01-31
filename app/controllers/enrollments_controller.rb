@@ -31,6 +31,7 @@ class EnrollmentsController < ApplicationController
     @enrollments = Enrollment.where(course: @course)
     @leader = @enrollments.find_by(role: 'leader').user
     @lessons = @course.lessons
+    @text = Text.new
     q_count = 0
     @lessons.each do |lesson|
       q_count += lesson.questions.size

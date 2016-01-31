@@ -12,6 +12,13 @@ describe User do
   it { should have_valid(:email).when("example@gmail.com") }
   it { should_not have_valid(:email).when("", nil, "John") }
 
+  it { should have_valid(:area_code).when("111") }
+
+  it { should have_valid(:first_digits).when("111") }
+
+  it { should have_valid(:last_digits).when("1111") }
+
+
   describe "#admin?" do
     it "is not an admin if the role is not admin" do
       user = create(:user, role: "member")

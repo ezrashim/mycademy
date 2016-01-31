@@ -12,6 +12,7 @@
           - if @enrollments.present? && current_user == @leader
             %th{ "data-field" => "last_sign_in" } Last Signed In
             %th{ "data-field" => "remove" } Edit
+            %th{ "data-field" => "message" } Text Message
       %tbody
         - if @enrollments.present? && current_user == @leader
           - @enrollments.each do |student|
@@ -22,6 +23,23 @@
                 %td= student.user.email
                 %td= student.user.last_sign_in_at.localtime.strftime("%-I:%M %p %Z %-m/%-d/%-Y") unless student.user.last_sign_in_at.nil?
                 %td= link_to 'Remove', enrollment_path(student, course_id: student.course), method: :delete
+                %td
+                  / Modal Trigger
+                  %a.modal-trigger{:href => "#modal#{student.id}"}
+                    %i.material-icons.medium textsms
+                  / Modal Structure
+                  .modal{ id: "modal#{student.id}"}
+                    .modal-content
+                      = form_for @text do |f|
+                        .div.input-field.hide
+                          = f.label :enrollment_id
+                          = f.number_field :enrollment_id, value: student.id
+                        .div.input-field
+                          = f.label :text
+                          = f.text_field :text
+                        %a.btn.waves-effect.waves-light
+                          = f.submit("Send")
+
         - elsif @enrollments.present? && @enrollments.find_by(user: current_user).learner?
           - @enrollments.each do |student|
             - unless student.user == current_user || student.user == @leader
