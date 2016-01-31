@@ -42,6 +42,8 @@ class EnrollmentsController < ApplicationController
   def destroy
     @course = Course.find(params[:course_id])
     @enrollment = Enrollment.find(params[:id])
+    @answers = @enrollment.answers
+    @answers.destroy_all
     if @enrollment.destroy
       flash[:notice] = "I'm sorry to hear that you removed #{@enrollment.user.first_name} from your class."
       redirect_to enrollments_path(course_id: @course.id)

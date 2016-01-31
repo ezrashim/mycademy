@@ -1,15 +1,18 @@
 .container
-  .row
-    .col.s12.center
-      %h1= @course.title
-      %h3= @course.description
-  - if user_signed_in? && !@enrollment.nil? && @enrollment.leader?
-    .row
-      .col.s12.center-align
-        %a.btn.waves-effect.waves-light.teal#edit-course{ href: edit_course_path(@course) }
-          %i.material-icons mode_edit
-        %a.btn.waves-effect.waves-light.teal#delete-course{ href: course_path(@course), "data-method" => "delete" }
-          %i.material-icons delete
+  %ul.collapsible{ "data-collapsible" => "accordion" }
+    %li
+      .collapsible-header.center
+        %h1= @course.title
+        %h3= @course.description
+      - if user_signed_in? && !@enrollment.nil? && @enrollment.leader?
+        .collapsible-body
+          .row
+            .col.s12.center
+              %%br
+              %a.btn.waves-effect.waves-light.blue-grey.darken-3#edit-course{ href: edit_course_path(@course) }
+                %i.material-icons mode_edit
+              %a.btn.waves-effect.waves-light.red#delete-course{ href: course_path(@course), "data-method" => "delete" }
+                %i.material-icons delete
   .section
     .row
       .col.s12.center
@@ -38,7 +41,7 @@
           .col.s12.center
             %a.up{ href: course_lesson_path(@course, lesson, direction: "up"), "data-method" => "patch", class: "up" }
               %i.material-icons.arrow.arrow-up expand_less
-            %h5.card-panel.hoverable= link_to "#{lesson.lesson_no}. #{lesson.title}", course_lesson_path(@course, lesson)
+            %h5.card-panel.hoverable= link_to "#{lesson.title}", course_lesson_path(@course, lesson)
             %a.down{ href: course_lesson_path(@course, lesson, direction: "down"), "data-method" => "patch", class: "down" }
               %i.material-icons.arrow.arrow-down expand_more
       - elsif user_signed_in? && !@enrollment.nil? && @enrollment.learner?

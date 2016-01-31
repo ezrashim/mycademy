@@ -3,15 +3,24 @@ $(document).ready(function() {
     event.stopPropagation();
     event.preventDefault();
     var buttonClicked = event.target
-    var question = $('.card-panel.hoverable.question')
     if (window.confirm('Are you sure?')) {
       ajaxQuestionDelete(buttonClicked);
     }
   });
+
+  $('a.btn.waves-effect.waves-light.red.delete-question').on('click', function(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    var buttonClicked = event.target
+    if (window.confirm('Are you sure?')) {
+      ajaxQuestionDelete(buttonClicked);
+    }
+  });
+
 });
 
 var ajaxQuestionDelete = function(buttonClicked) {
-  var questionClass = $($(buttonClicked).closest('row')[0]).attr('class');
+  var questionClass = $($(buttonClicked).closest('li')[0]).attr('class');
   var questionId = questionClass.match(/question-(\d+)/)[1];
   var request = $.ajax({
     method: 'DELETE',
