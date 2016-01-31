@@ -20,7 +20,7 @@
             %h5 Questions
             %ul.collapsible{ "data-collapsible" => "accordion" }
               - @questions.each do |question|
-                %li.card-panel.hoverable{ class: "question-#{question.id}"}
+                %li.card-panel.hoverable{ class: "question-#{question.id}" }
                   - if @enrollment.leader?
                     .collapsible-header
                       = link_to question.question, question_answers_path(question)
