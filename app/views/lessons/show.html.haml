@@ -2,7 +2,7 @@
   %ul.collapsible{ "data-collapsible" => "accordion" }
     %li
       .collapsible-header
-        %h1.center #{@lesson.lesson_no}. #{@lesson.title}
+        %h3.center #{@lesson.lesson_no}. #{@lesson.title}
         = @lesson.content.html_safe
       - if @enrollment.leader?
         .collapsible-body
@@ -23,7 +23,7 @@
                 %li.card-panel.hoverable{ class: "question-#{question.id}" }
                   - if @enrollment.leader?
                     .collapsible-header
-                      = link_to question.question, question_answers_path(question)
+                      %h5= link_to question.question, question_answers_path(question)
                     .collapsible-body
                       %a.btn.waves-effect.waves-light.blue-grey.darken-3.edit-question{ href: edit_question_path(question, lesson_id: @lesson.id) }
                         %i.material-icons edit

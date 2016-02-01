@@ -3,7 +3,7 @@
     %li
       .collapsible-header.center
         %h1= @course.title
-        %h3= @course.description
+        %h5= @course.description
       - if user_signed_in? && !@enrollment.nil? && @enrollment.leader?
         .collapsible-body
           .row
