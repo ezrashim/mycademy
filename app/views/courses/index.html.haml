@@ -1,18 +1,18 @@
 
 
 .row.background
-  .col.s12
+  .col.s12.light-bulb
     %h1.center.blue-grey-text.text-darken-4 Welcome to Mycademy.
     %br
     %h5.center.blue-grey-text.text-darken-4 Design and lead your own course.
-    %img{ src: "http://i.imgur.com/rij0PkA.jpg?1" }
-  %%br
-  %%br
-  .section.center.lead-course
-    - if !user_signed_in?
-      = render 'join_mycademy'
-    - else
-      = render 'lead_course'
+    %img{ src: "https://i.imgur.com/rij0PkA.jpg?1" }
+    %%br
+    %%br
+    .section.center.lead-course
+      - if !user_signed_in?
+        = render 'join_mycademy'
+      - else
+        = render 'lead_course'
   %%br
 .container
   .row

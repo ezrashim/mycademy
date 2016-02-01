@@ -43,3 +43,28 @@ $link-color: color("teal", "lighten-1") !default;
 .btn-large.join-course {
   margin: 60px;
 }
+
+@media (max-width: 1200px) {
+  .background h1 {
+    font-size: 400%;
+  }
+
+  .light-bulb {
+    position: relative;
+    overflow: hidden;
+  }
+  .background img {
+    // width: auto;
+    // display: inline-block;
+    // margin-left: auto;
+    // margin-right: auto;
+    position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+    width: auto;
+
+  }
+}
