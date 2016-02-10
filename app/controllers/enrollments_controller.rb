@@ -3,7 +3,7 @@ class EnrollmentsController < ApplicationController
 
   def show
     @course = Course.find(params[:course_id])
-    @lessons = @course.lessons
+    @lessons = @course.lessons.sort_by { |a| a.lesson_no }
     @enrollment = Enrollment.find(params[:id])
     @learner = @enrollment.user
   end
