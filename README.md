@@ -18,7 +18,7 @@ Please visit the [website](https://mycademy.herokuapp.com/)!
 ##Development##
 - Ruby (version 2.0.0)
 - Rails (version 4.2.5)
-- Postgres (version 9.4.5.0)
+- PostgreSQL (version 9.4.5.0)
 - Materialize
 - Devise
 - Tinymce-rails
