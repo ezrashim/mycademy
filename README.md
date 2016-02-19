@@ -6,8 +6,11 @@
 
 
 ##What is Mycademy?##
+Mycademy is a personal online teaching platform designed using Test Driven Development. The project integrates Twilio API, Tinymce Editor, and Materialize frontend with custom Sass into Ruby on Rails with PostgreSQL database.
 
- Mycademy is a small scale online-learning platform that allows people to quickly create lessons and easily join courses. Anyone with an idea can create account, design a course, invite friends, and give feedback through text message. Please visit the [website](https://mycademy.herokuapp.com/)!
+Mycademy is a place where users can design and lead their own curriculum. Users can create a course and view student progress instantly. Also, course leaders can connect with students easily through the integrated text messaging option.
+
+Please visit the [website](https://mycademy.herokuapp.com/)!
 
 ##ER Diagram##
 [https://drive.google.com/file/d/0B1xviAR28LmqWlJjd0VJUUxmb0k/view?usp=sharing](https://drive.google.com/file/d/0B1xviAR28LmqWlJjd0VJUUxmb0k/view?usp=sharing)
@@ -23,7 +26,7 @@
 
 ##Testing##
 
-To run the text, you need to clone to repository and install bundle. All required gems are listed in the Gemfile.
+To run the test, you need to clone to repository and install bundle. All required gems are listed in the Gemfile.
 
 - Install [bundle](http://bundler.io/).
 ```
