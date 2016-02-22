@@ -15,6 +15,10 @@ Please visit the [website](https://mycademy.herokuapp.com/)!
 ##ER Diagram##
 [https://drive.google.com/file/d/0B1xviAR28LmqWlJjd0VJUUxmb0k/view?usp=sharing](https://drive.google.com/file/d/0B1xviAR28LmqWlJjd0VJUUxmb0k/view?usp=sharing)
 
+##Demo##
+
+[Screencast](https://vimeo.com/156280156)
+
 ##Development##
 - Ruby (version 2.0.0)
 - Rails (version 4.2.5)
