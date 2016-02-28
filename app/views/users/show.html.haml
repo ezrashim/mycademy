@@ -3,7 +3,32 @@
     .col.s12.center
       %h1= @user.first_name + " " + @user.last_name
       -# =image_tag "#{@user.profile_photo}", size: "160x160"
+
+      - if @leading.empty?
+        = render 'courses/lead_course'
+      - else
+        %table.responsive-table.card-panel.hoverable.highlight.centered
+          %thead
+            %tr
+              %th{ "data-field" => "course_title"} Leading Course
+          %tbody
+            - @leading.each do |lead|
+              %tr
+                %td= link_to "#{lead.course.title}", course_path(lead.course)
+
+      - if @learning.empty?
+        = render 'courses/join_course'
+      - else
+        %table.responsive-table.card-panel.hoverable.highlight.centered
+          %thead
+            %tr
+              %th{ "data-field" => "course_title"} Learning Course
+          %tbody
+            - @learning.each do |learn|
+              %tr
+                %td= link_to "#{learn.course.title}", course_path(learn.course)
+
       %ul
         %li= @user.email
         %li #{@user.area_code}-#{@user.first_digits}-#{@user.last_digits}
-      %div= link_to 'Update', edit_user_registration_path
+      %div= link_to 'Update Profile', edit_user_registration_path
