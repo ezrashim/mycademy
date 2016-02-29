@@ -13,7 +13,7 @@ Mycademy is a place where users can design and lead their own curriculum. Users 
 Please visit the [website](https://mycademy.herokuapp.com/)!
 
 ##ER Diagram##
-[https://drive.google.com/file/d/0B1xviAR28LmqWlJjd0VJUUxmb0k/view?usp=sharing](https://drive.google.com/file/d/0B1xviAR28LmqWlJjd0VJUUxmb0k/view?usp=sharing)
+![ER Diagram](docs/mycademy_er_diagram.png)
 
 ##Demo##
 
