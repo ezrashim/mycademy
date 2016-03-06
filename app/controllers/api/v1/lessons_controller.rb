@@ -11,10 +11,8 @@ class Api::V1::LessonsController < Api::V1::BaseController
       if @next_lesson.present?
         @next_lesson.increment!(:lesson_no, -1)
         @lesson.increment!(:lesson_no)
-        @lessons = Lesson.where(course_id: @course).sort_by { |a| a.lesson_no }
-      else
-        @lessons = Lesson.where(course_id: @course).sort_by { |a| a.lesson_no }
       end
+      @lessons = Lesson.where(course_id: @course).sort_by { |a| a.lesson_no }
       render json: { html: render_to_string(partial: 'courses/lessons', layout: false, locals: { lessons: @lessons }) }
 
     elsif params[:direction].present? && params[:direction] == "up"
@@ -22,10 +20,8 @@ class Api::V1::LessonsController < Api::V1::BaseController
       if @previous_lesson.present?
         @previous_lesson.increment!(:lesson_no)
         @lesson.increment!(:lesson_no, -1)
-        @lessons = Lesson.where(course_id: @course).sort_by { |a| a.lesson_no }
-      else
-        @lessons = Lesson.where(course_id: @course).sort_by { |a| a.lesson_no }
       end
+      @lessons = Lesson.where(course_id: @course).sort_by { |a| a.lesson_no }
       render json: { html: render_to_string(partial: 'courses/lessons', layout: false, locals: { lessons: @lessons }) }
     end
   end
