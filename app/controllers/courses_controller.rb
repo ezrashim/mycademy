@@ -54,7 +54,7 @@ class CoursesController < ApplicationController
         questions.destroy_all
       end
     end
-    
+
     if @lessons.destroy_all && @enrollments.destroy_all && @course.destroy
       flash[:notice] = "Hey buddy, you just deleted your own course!"
       redirect_to root_path

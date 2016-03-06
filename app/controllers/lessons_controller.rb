@@ -6,6 +6,7 @@ class LessonsController < ApplicationController
     @course = @lesson.course
     @enrollment = Enrollment.find_by(user: current_user, course: @course)
     @questions =  Question.where(lesson: @lesson)
+    @lessons = Lesson.where(course_id: @course).sort_by { |a| a.lesson_no }
     if @enrollment.nil?
       redirect_to new_enrollment_path(course_id: @course.id)
     end
@@ -70,9 +71,9 @@ class LessonsController < ApplicationController
     @course = Course.find(params[:course_id])
     @lesson = Lesson.find(params[:id])
     @enrollment = Enrollment.find_by(user: current_user, course: @course)
-
     if params[:direction].present? && params[:direction] == "down"
       @next_lesson = Lesson.find_by(course: @course, lesson_no: @lesson.lesson_no + 1)
+
       if @next_lesson.present?
         @lesson.increment!(:lesson_no)
         @next_lesson.increment!(:lesson_no, -1)

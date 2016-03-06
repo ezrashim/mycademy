@@ -1,7 +1,7 @@
 .container
   %ul.collapsible{ "data-collapsible" => "accordion" }
     %li
-      .collapsible-header.center
+      .collapsible-header.center{ class: "course-#{@course.id}" }
         %h1= @course.title
         %h5= @course.description
       - if user_signed_in? && !@enrollment.nil? && @enrollment.leader?
@@ -33,25 +33,7 @@
           %a.btn-large.waves-effect.waves-light.teal#enrollment{ href: enrollments_path(course_id: @course.id) }
             %i.material-icons.left list
             Enrollment
-
-  - @lessons.each do |lesson|
-    %ul.lesson
-      - if user_signed_in? && !@enrollment.nil? && @enrollment.leader?
-        .row{class: "lesson-#{lesson.id} num-#{lesson.lesson_no}"}
-          .col.s12.center
-            %a.up{ href: course_lesson_path(@course, lesson, direction: "up"), "data-method" => "patch", class: "up" }
-              %i.material-icons.arrow.arrow-up expand_less
-            %h5.card-panel.hoverable= link_to "#{lesson.title}", course_lesson_path(@course, lesson)
-            %a.down{ href: course_lesson_path(@course, lesson, direction: "down"), "data-method" => "patch", class: "down" }
-              %i.material-icons.arrow.arrow-down expand_more
-      - elsif user_signed_in? && !@enrollment.nil? && @enrollment.learner?
-        .row
-          .col.s12.center
-            %li.card-panel.hoverable= link_to "Lesson #{lesson.lesson_no}: #{lesson.title}", course_lesson_path(@course, lesson)
-      - else
-        .row
-          .col.s12.center
-            %li Lesson #{lesson.lesson_no}: #{lesson.title}
+  = render 'courses/lessons'
   - if user_signed_in? && !@enrollment.nil? && @enrollment.leader?
     .row
       %a.btn-large.col.s12.waves-effect.waves-light.teal#add-lesson{ href: new_course_lesson_path(@course) }
