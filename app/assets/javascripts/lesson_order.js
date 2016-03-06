@@ -2,7 +2,7 @@
 $(document).on('click', '.arrow', function(event) {
   event.stopPropagation();
   event.preventDefault();
-  var buttonClicked = event.target
+  var buttonClicked = event.target;
   ajaxLessonOrder(buttonClicked);
 });
 
@@ -20,28 +20,7 @@ var ajaxLessonOrder = function(buttonClicked) {
 
   request.success(function(data) {
     console.log('success');
-    $section = $(data.html)
+    var $section = $(data.html);
     $('.all-lessons').replaceWith($section);
-  })
-
-  // request.success(function(data) {
-  //   console.log('success');
-  //
-  //   var lessonMove = $(buttonClicked).closest('ul')[0];
-  //   var previousLesson = $(lessonMove).prev();
-  //   var nextLesson = $(lessonMove).next();
-  //   if (lessonDirection === "up") {
-  //     if ( previousLesson.attr('class') === 'lesson' ) {
-  //       $(lessonMove).detach();
-  //       $(lessonMove).insertBefore(previousLesson);
-  //     }
-  //
-  //   } else if (lessonDirection === "down") {
-  //     if (nextLesson.attr('class') === 'lesson' ) {
-  //       $(lessonMove).detach();
-  //       $(lessonMove).insertAfter(nextLesson);
-  //     }
-  //   };
-  // })
-
+  });
 }

@@ -1,7 +1,7 @@
 .container
   %ul.collapsible{ "data-collapsible" => "accordion" }
     %li
-      .collapsible-header.center{ class: "course-#{@course.id}"}
+      .collapsible-header.center{ class: "course-#{@course.id}" }
         %h1= @course.title
         %h5= @course.description
       - if user_signed_in? && !@enrollment.nil? && @enrollment.leader?
