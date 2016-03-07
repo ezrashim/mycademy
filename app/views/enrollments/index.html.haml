@@ -29,7 +29,7 @@
                 %td
                   - if student.user.area_code == 510
                     / Modal Trigger
-                    %a.modal-trigger{:href => "#modal#{student.id}"}
+                    %a.modal-trigger{ :href => "#modal#{student.id}" }
                       %i.material-icons.medium.blue-text.text-lighten-1 chat
                     / Modal Structure
                     .modal{ id: "modal#{student.id}"}
