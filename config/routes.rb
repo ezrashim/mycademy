@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root 'courses#index'
 
-  resources :users, only: [:show]
+  resources :users, only: [:show, :index]
 
   resources :courses do
     resources :lessons
