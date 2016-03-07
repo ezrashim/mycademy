@@ -27,21 +27,24 @@
                   %a.btn-floating.waves-effect.waves-light.red.delete-enrollment{ href: enrollment_path(student, course_id: student.course), "data-method" => "delete" }
                     %i.material-icons.delete-enrollment remove
                 %td
-                  / Modal Trigger
-                  %a.modal-trigger{:href => "#modal#{student.id}"}
-                    %i.material-icons.medium.blue-text.text-lighten-1 chat
-                  / Modal Structure
-                  .modal{ id: "modal#{student.id}"}
-                    .modal-content
-                      = form_for @text do |f|
-                        .div.input-field.hide
-                          = f.label :enrollment_id
-                          = f.number_field :enrollment_id, value: student.id
-                        .div.input-field
-                          = f.label :text
-                          = f.text_field :text
-                        %a.btn.waves-effect.waves-light.blue
-                          = f.submit("Send")
+                  - if student.user.area_code == 510
+                    / Modal Trigger
+                    %a.modal-trigger{ :href => "#modal#{student.id}" }
+                      %i.material-icons.medium.blue-text.text-lighten-1 chat
+                    / Modal Structure
+                    .modal{ id: "modal#{student.id}"}
+                      .modal-content
+                        = form_for @text do |f|
+                          .div.input-field.hide
+                            = f.label :enrollment_id
+                            = f.number_field :enrollment_id, value: student.id
+                          .div.input-field
+                            = f.label :text
+                            = f.text_field :text
+                          %a.btn.waves-effect.waves-light.blue
+                            = f.submit("Send")
+                  - else
+                    %i.material-icons.medium.grey-text.text-lighten-1 chat
 
         - elsif @enrollments.present? && @enrollments.find_by(user: current_user).learner?
           - @enrollments.each do |student|
