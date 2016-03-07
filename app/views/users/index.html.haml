@@ -1,0 +1,13 @@
+.container
+  .row
+    .col.s12.center
+      %h1 Admin Page
+
+      %table.responsive-table.card-panel.hoverable.highlight.centered
+        %thead
+          %tr
+            %th{ "data-field" => "course_title" } All Courses
+        %tbody
+          - @courses.each do |course|
+            %tr
+              %td= link_to "#{course.title}", course_path(course)

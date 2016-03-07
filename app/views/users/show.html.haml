@@ -32,3 +32,7 @@
         %li= @user.email
         %li #{@user.area_code}-#{@user.first_digits}-#{@user.last_digits}
       %div= link_to 'Update Profile', edit_user_registration_path
+      %br
+      - if @user.admin?
+        %a.waves-effect.btn{ href: users_path }
+          Admin Page
