@@ -33,7 +33,11 @@
 .container{ "ng-app" => "instantSearch", "ng-controller" => "InstantSearchController" }
   .row
     .col.s12
-      %input{ "ng-model" => "searchString", type: "text", placeholder: "Enter your search course" }
+      .input-field
+        %input#search{ "ng-model" => "searchString", type: "text" }
+          %label.center
+            %i.material-icons.left search
+            Search Course
       .row
         %h4.col.s12.center-align{ "ng-repeat" => "i in items | searchFor:searchString" }
           %a.center-align{ href: "/courses/{{i.id}}" }
