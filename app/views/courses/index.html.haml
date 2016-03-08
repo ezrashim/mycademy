@@ -14,31 +14,33 @@
       - else
         = render 'lead_course'
   %%br
-.container
-  .row
-    .col.s12
-      %form{ "accept-charset" => "UTF-8", :action => courses_path }
-        .input-field
-          %input#search{ :required => "", :name => "q", :type => "search" }
-            %label.center{ :for => "search" }
-              %i.material-icons.left search
-              Search Course
-            %i.material-icons close
 
 .section.center
-  - if @courses.present?
-    = render 'courses'
-  - else
-    .row
-      .col.s12.m3.center
-        %i.large.material-icons.teal-text lightbulb_outline
-        %h5.teal-text Have an Idea
-      .col.s12.m3.center
-        %i.large.material-icons.teal-text gesture
-        %h5.teal-text Design your Course
-      .col.s12.m3.center
-        %i.large.material-icons.teal-text group_add
-        %h5.teal-text Invite your Friends
-      .col.s12.m3.center
-        %i.large.material-icons.teal-text chat
-        %h5.teal-text Give Feedback
+  .row
+    .col.s12.m3.center
+      %i.large.material-icons.teal-text lightbulb_outline
+      %h5.teal-text Have an Idea
+    .col.s12.m3.center
+      %i.large.material-icons.teal-text gesture
+      %h5.teal-text Design your Course
+    .col.s12.m3.center
+      %i.large.material-icons.teal-text group_add
+      %h5.teal-text Invite your Friends
+    .col.s12.m3.center
+      %i.large.material-icons.teal-text chat
+      %h5.teal-text Give Feedback
+
+.container{ "ng-app" => "instantSearch", "ng-controller" => "InstantSearchController" }
+  .row
+    .col.s12
+      .input-field
+        %input#search{ "ng-model" => "searchString", type: "text" }
+          %label.center
+            %i.material-icons.left search
+            Search Course
+      .row
+        %h4.col.s12.center-align{ "ng-repeat" => "i in items | searchFor:searchString" }
+          %a.center-align{ href: "/courses/{{i.id}}" }
+            %i.material-icons.valign-center widgets
+            {{i.title}}
+            %h5.light.col12.center-align {{i.description}}

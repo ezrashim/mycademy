@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @courses = Course.search_by_title(params[:q])
+    @courses = Course.all
   end
 
   def new
