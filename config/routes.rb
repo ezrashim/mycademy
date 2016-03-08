@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       resources :questions, only: [:destroy]
       resources :enrollments, only: [:destroy]
       resources :lessons, only: [:update]
+      resources :courses, only: [:index]
     end
   end
 end
